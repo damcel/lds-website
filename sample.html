@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Styled Calendar</title>
+  <style>
+
+.selector-wrapper > div {
+  flex: 1; /* Allow equal width */
+  margin-right: 20px; /* Optional spacing */
+}
+
+.selector-wrapper > div:last-child {
+  margin-right: 0;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  width: 100%; /* Ensure full width */
+}
+
+
+    .selector-wrapper{
+        display: flex;
+        justify-content: space-between;
+        width: 100%; /* Ensures it fills its parent container */
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 700px;
+    }
+
+    .custom-select {
+      background: white;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+      width: 100%; /* Make it fill the wrapper */
+        box-sizing: border-box; /* Prevent padding from increasing its width */
+    }
+
+    .options {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+      background: #f7f1f1;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+    }
+
+    .option {
+      padding: 12px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      background: #f2c744;
+    }
+
+    .option.selected {
+      background: #f2c744;
+    }
+
+    /* Calendar */
+    .calendar .day.selected {
+    background-color: #f2c744;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    }
+
+    .calendar {
+      padding: 20px 25px 20px 25px;
+      background-color: #F5F5F5;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .calendar select {
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+    }
+
+    .calendar .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .calendar .day {
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      background: rgb(203, 202, 202);
+    }
+
+    .calendar .day.disabled {
+      color: #aaa;
+      cursor: not-allowed;
+    }
+
+    .calendar .day:hover:not(.disabled) {
+      background: #f2c744;
+    }
+
+    .calendar .day-header {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .calendar .day.today {
+      font-weight: bold;
+      color: #fff;
+    background-color: #ff5b34; /* Vibrant orange */
+      border-radius: 50%;
+    }
+
+    .notif-main-ctn{
+        display: flex;
+        justify-content: center;
+        margin: min(40px, 7%);
+        margin-top: min(20px, 7%);
+        margin-bottom: min(20px, 7%);
+}
+.time-ctn {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      padding: 20px;
+      width: 300px;
+    }
+
+    .custom-select-wrapper {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .custom-select-time {
+        background: white;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+    }
+
+    .custom-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      z-index: 10;
+      display: none;
+    }
+
+    .custom-options.active {
+      display: block;
+    }
+
+    .custom-option {
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .custom-option:hover {
+      background: #f6c940;
+      color: #000;
+    }
+
+    .custom-option.selected {
+      background: #f6c940;
+      color: #000;
+    }
+
+    .time-box {
+      display: flex;
+      gap: 20px;
+      
+    }
+
+    .time-block {
+      display: flex;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .time-block.am {
+      background: #f6c940;
+      color: #fff;
+    }
+
+    .time-block.pm {
+      background: #ff5b34;
+      color: #fff;
+    }
+
+    .time-block h3{
+      font-size: 25px;
+      color: white;
+      padding: 10px 15px;
+      margin: 0;
+    align-content: center;
+    }
+
+    .date-box {
+      background: #fff;
+      border: 2px solid #dfdcdb;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .date-box p{
+        margin: 0;
+    }
+
+    .clock {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    margin: 20px auto;
+    border: 4px solid #ddd;
+    }
+
+    .clock-number {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+    }
+
+    /* Highlight selected time */
+    .clock-number.start-selected {
+    background-color: #f2c744;
+    border-radius: 50%;
+    padding: 4px 8px;
+    color: black;
+    }
+
+    .clock-number.end-selected {
+    background-color: #ff5b34;
+    border-radius: 50%;
+    padding: 4px 8px;
+    color: white;
+    }
+    
+    .circle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+    .calendar-time{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .pm-style, .am-style{
+        background-color: gray;
+        padding: 10px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    .pm-style p,  .am-style p{
+        font-size: 10px;
+    }
+
+    .date, .month{
+        padding: 5px;
+    }
+
+    .date{
+        color: #6b6767;
+        background-color: white;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .month{
+        color: #fefefe;
+        background-color: #F17646;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+    }
+
+    .colon {
+        align-self: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+}
+
+.time-month-ctn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 5px 10px 5px 10px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #ddd;
+}
+
+.mont-year{
+    display: flex;
+    justify-content: space-between;
+}
+
+.start-end{
+    display: flex;
+    justify-content: space-between;
+}
+  </style>
+</head>
+<body>
+
+  <section class="notif-main-ctn">
+    <div class="container">
+        <div class="selector-wrapper">
+            <!-- Instrument Dropdown -->
+            <div>
+                <div class="label">Instrument</div>
+                <div class="dropdown-wrapper" id="instrument-dropdown">
+                <div class="custom-select" id="instrument-selected">Select Instrument ▾</div>
+                <div class="options" id="instrument-options">
+                    <div class="option">Drum</div>
+                    <div class="option selected">Piano</div>
+                    <div class="option">Ukelele</div>
+                    <div class="option">Guitar</div>
+                </div>
+                </div>
+            </div>
+    
+            <!-- Instructor Dropdown -->
+            <div>
+                <div class="label">Instructor</div>
+                <div class="dropdown-wrapper" id="instructor-dropdown">
+                <div class="custom-select" id="instructor-selected">John Doe ▾</div>
+                <div class="options" id="instructor-options">
+                    <div class="option selected">John Doe</div>
+                    <div class="option">Jane Smith</div>
+                    <div class="option">Alex Brown</div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="calendar-time">
+            <!-- Calendar -->
+            <div class="calendar">
+                <div class="mont-year">
+                    <select id="month-select"></select>
+                <select id="year-select"></select>
+                </div>
+                <div class="days" id="calendar-days">
+                <!-- Day headers and numbers will be inserted here -->
+                </div>
+            </div>
+
+            <div class="time-ctn">
+                <div class="start-end">
+                    <div class="session-ctn">
+                        <label>Session Start</label>
+                        <div class="custom-select-wrapper">
+                          <div class="custom-select-time">Select Time Start</div>
+                          <div class="custom-options">
+                            <div class="custom-option selected">7:00 AM</div>
+                            <div class="custom-option">10:00 AM</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="session-ctn">
+                        <label>Session End</label>
+                        <div class="custom-select-wrapper">
+                          <div class="custom-select-time">Select Time End</div>
+                          <div class="custom-options">
+                            <div class="custom-option selected">7:00 PM</div>
+                            <div class="custom-option">10:00 PM</div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="time-month-ctn">
+                    <div class="time-box">
+                        <div class="time-block am">
+                        <h3>7</h3>
+                        <div class="am-style">
+                            <p>AM</p>
+                        </div>
+                        </div>
+
+                        <div class="colon">:</div>
+
+                        <div class="time-block pm">
+                        <h3>10</h3>
+                        <div class="pm-style">
+                            <p>PM</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="date-box">
+                        <div class="month">
+                            <p>MAY</p>
+                        </div>
+                        <div class="date">
+                            <p>17</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clock" id="round-clock">
+                    <div class="hour"></div>
+                    <div class="circle red">0</div>
+                    <div class="circle purple">7</div>
+                    <!-- Clock numbers 1 to 12 -->
+                    <div class="clock-number" data-hour="1"></div>
+                    <div class="clock-number" data-hour="2"></div>
+                    <div class="clock-number" data-hour="3"></div>
+                    <div class="clock-number" data-hour="4"></div>
+                    <div class="clock-number" data-hour="5"></div>
+                    <div class="clock-number" data-hour="6"></div>
+                    <div class="clock-number" data-hour="7"></div>
+                    <div class="clock-number" data-hour="8"></div>
+                    <div class="clock-number" data-hour="9"></div>
+                    <div class="clock-number" data-hour="10"></div>
+                    <div class="clock-number" data-hour="11"></div>
+                    <div class="clock-number" data-hour="12"></div>
+                </div>                  
+            </div>
+        </div>
+    </div>
+  </section>
+  <script src="script/drop-down.js"></script>
+  <script src="script/date-instructor-instrument.js"></script>
+  <script src="script/time-month.js"></script>
+</body>
+</html>

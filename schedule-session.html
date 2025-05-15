@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Book Session</title>
+    <style>
+            table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #dc3545; /* Red */
+      color: white;
+    }
+
+    tbody tr:hover {
+      background-color: #f9d6d5; /* Light red tint for hover */
+    }
+
+    td i {
+      margin-left: 5px;
+      color: #dc3545; /* Red icon */
+    }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <a href="dashboardjobs.php" class="logo-link">
+                        <img src="logo/lds-logo.jpg" alt="lds-logo" id="sidebar-logo">
+                    </a>
+                </div>
+                <button onclick="toggleSidebar()" id="toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/>
+                    </svg>
+                </button>
+            </div>
+            <section class="li-styling">
+                <div class="user-name-container">
+                    <h3 class="user-name">Daniel Pagcaliwangan</h3>
+                    <h4 class="user-role">Instrument</h4>
+                    <div class="user-icon">
+                      <object type="image/svg+xml" data="/svg/drummer-svgrepo-com.svg" class="user-avatar-icon"></object>
+                    </div>
+                </div>
+                <ul class="ul-links">
+                  <li>
+                    <a href="student-dashboard.html">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-bell"></i><span>Notification</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-message"></i><span>Message</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="schedule.html">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="session-log.html">
+                      <!-- SVG Icon -->
+                      <i class="fa-solid fa-chalkboard-user"></i><span>Session Log</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-credit-card"></i><span>Payments</span>
+                    </a>
+                  </li>
+                </ul>
+            </section>
+        </nav>
+    </aside>
+    
+    <main class="dashboard-container">
+        <header class="header-container">
+            <div class="dropdown-container">
+                <button class="profile-btn" id="dpBtn"><i class="fa-solid fa-user"></i></button>
+                <!-- Dropdown Menu -->
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="#" class="prfl">Profile Settings</a>
+                    <a href="index.php">Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="schedule-main-ctn">
+            <section>
+                <div class="tabs-ctn">
+                    <nav class="tabs">
+                        <ul>
+                          <li class="tab"><a href="schedule.html">Schedule</a></li>
+                          <li class="tab active"><a href="schedule-session.html">Book a Schedule</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+                              
+            <section class="assignment-page-ctn">
+                <div class="container">
+                    <div class="selector-wrapper">
+                        <!-- Instrument Dropdown -->
+                        <div>
+                            <div class="label">Instrument</div>
+                            <div class="dropdown-wrapper" id="instrument-dropdown">
+                            <div class="custom-select" id="instrument-selected">Select Instrument ▾</div>
+                            <div class="options" id="instrument-options">
+                                <div class="option">Drum</div>
+                                <div class="option selected">Piano</div>
+                                <div class="option">Ukelele</div>
+                                <div class="option">Guitar</div>
+                            </div>
+                            </div>
+                        </div>
+                
+                        <!-- Instructor Dropdown -->
+                        <div>
+                            <div class="label">Instructor</div>
+                            <div class="dropdown-wrapper" id="instructor-dropdown">
+                            <div class="custom-select" id="instructor-selected">John Doe ▾</div>
+                            <div class="options" id="instructor-options">
+                                <div class="option selected">John Doe</div>
+                                <div class="option">Jane Smith</div>
+                                <div class="option">Alex Brown</div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-time">
+                        <!-- Calendar -->
+                        <div class="calendar">
+                            <div class="mont-year">
+                                <select id="month-select"></select>
+                            <select id="year-select"></select>
+                            </div>
+                            <div class="days" id="calendar-days">
+                            <!-- Day headers and numbers will be inserted here -->
+                            </div>
+                        </div>
+            
+                        <div class="time-ctn">
+                            <div class="start-end">
+                                <div class="session-ctn">
+                                    <div class="custom-select-wrapper">
+                                      <div class="custom-select-time">Session Start</div>
+                                      <div class="custom-options">
+                                        <div class="custom-option selected">7:00 AM</div>
+                                        <div class="custom-option">10:00 AM</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="session-ctn">
+                                    <div class="custom-select-wrapper">
+                                      <div class="custom-select-time">Session End</div>
+                                      <div class="custom-options">
+                                        <div class="custom-option selected">7:00 PM</div>
+                                        <div class="custom-option">10:00 PM</div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="time-month-ctn">
+                                <div class="time-box">
+                                    <div class="time-block am">
+                                    <h3>7</h3>
+                                    <div class="am-style">
+                                        <p>AM</p>
+                                    </div>
+                                    </div>
+            
+                                    <div class="colon">:</div>
+            
+                                    <div class="time-block pm">
+                                    <h3>10</h3>
+                                    <div class="pm-style">
+                                        <p>PM</p>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="date-box">
+                                    <div class="month">
+                                        <p>MAY</p>
+                                    </div>
+                                    <div class="date">
+                                        <p>17</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clock" id="round-clock">
+                                <div class="hour"></div>
+                                <div class="circle red">0</div>
+                                <div class="circle purple">7</div>
+                                <!-- Clock numbers 1 to 12 -->
+                                <div class="clock-number" data-hour="1"></div>
+                                <div class="clock-number" data-hour="2"></div>
+                                <div class="clock-number" data-hour="3"></div>
+                                <div class="clock-number" data-hour="4"></div>
+                                <div class="clock-number" data-hour="5"></div>
+                                <div class="clock-number" data-hour="6"></div>
+                                <div class="clock-number" data-hour="7"></div>
+                                <div class="clock-number" data-hour="8"></div>
+                                <div class="clock-number" data-hour="9"></div>
+                                <div class="clock-number" data-hour="10"></div>
+                                <div class="clock-number" data-hour="11"></div>
+                                <div class="clock-number" data-hour="12"></div>
+                            </div>                  
+                        </div>
+                    </div>
+                </div>
+              </section>
+        </section>
+
+    </main>
+
+    <script src="script/drop-down.js"></script>
+  <script src="script/date-instructor-instrument.js"></script>
+  <script src="script/time-month.js"></script>
+    <script src="script/sidenav.js"></script>
+    <script src="script/profile-dropdown-menu.js"></script>     
+</body>
+</html>

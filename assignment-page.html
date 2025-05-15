@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Schedule</title>
+    <style>
+        .assignment-header{
+            display: flex;
+            justify-content: space-between;
+	gap: 20px;
+	flex-wrap: wrap;
+        }
+
+        .assignment-box-controller{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border: 1px solid #b4b7b9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .assignment-context{
+    display: flex;
+    gap: 10px;
+  }
+
+  .assignment-context p {
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .dl-btn{
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: red;
+    border: none;
+  }
+
+  .assignment-content{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <a href="dashboardjobs.php" class="logo-link">
+                        <img src="logo/lds-logo.jpg" alt="lds-logo" id="sidebar-logo">
+                    </a>
+                </div>
+                <button onclick="toggleSidebar()" id="toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/>
+                    </svg>
+                </button>
+            </div>
+            <section class="li-styling">
+                <div class="user-name-container">
+                    <h3 class="user-name">Daniel Pagcaliwangan</h3>
+                    <h4 class="user-role">Instrument</h4>
+                    <div class="user-icon">
+                      <object type="image/svg+xml" data="/svg/drummer-svgrepo-com.svg" class="user-avatar-icon"></object>
+                    </div>
+                </div>
+                <ul class="ul-links">
+                  <li>
+                    <a href="student-dashboard.html">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-bell"></i><span>Notification</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-message"></i><span>Message</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="schedule.html">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="session-log.html">
+                      <!-- SVG Icon -->
+                      <i class="fa-solid fa-chalkboard-user"></i><span>Session Log</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-credit-card"></i><span>Payments</span>
+                    </a>
+                  </li>
+                </ul>
+            </section>
+        </nav>
+    </aside>
+    
+    <main class="dashboard-container">
+        <header class="header-container">
+            <div class="dropdown-container">
+                <button class="profile-btn" id="dpBtn"><i class="fa-solid fa-user"></i></button>
+                <!-- Dropdown Menu -->
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="#" class="prfl">Profile Settings</a>
+                    <a href="index.php">Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="schedule-main-ctn">
+            <section>
+                <div class="tabs-ctn">
+                    <nav class="tabs">
+                        <ul>
+                            <li class="tab"><a href="session-log.html">Session Log</a></li>
+                            <li class="tab active"><a href="assignment-page.html">Assignment Log</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+            <section class="assignment-main-ctn">
+                <section class="schedule-status-ctn">
+                    <article class="assignment-box-controller">
+                        <header class="assignment-header">
+                            <div class="assignment-context">
+                                <p>Teacher: </p><span>Daniel</span>
+                                <p>Session Number: </p><span>2</span>
+                                <p>Instrument: </p> <span>Drums</span>
+                            </div>
+                            <div>
+                                <p>Date: 5-15-2025</p>
+                            </div>
+                        </header>
+                        <section class="assignment-content">
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                </p>
+                            </div>
+                        <div>
+                            <button class="dl-btn">download</button>
+                        </div>
+                        </section>
+                    </article>
+                    
+                    <article class="assignment-box-controller">
+                        <header class="assignment-header">
+                            <div class="assignment-context">
+                                <p>Teacher: </p><span>Daniel</span>
+                                <p>Session Number: </p><span>2</span>
+                                <p>Instrument: </p> <span>Drums</span>
+                            </div>
+                            <div>
+                                <p>Date: 5-15-2025</p>
+                            </div>
+                        </header>
+                        <section class="assignment-content">
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                </p>
+                            </div>
+                        <div>
+                            <button class="dl-btn">download</button>
+                        </div>
+                        </section>
+                    </article>
+
+                    <article class="assignment-box-controller">
+                        <header class="assignment-header">
+                            <div class="assignment-context">
+                                <p>Teacher: </p><span>Daniel</span>
+                                <p>Session Number: </p><span>2</span>
+                                <p>Instrument: </p> <span>Drums</span>
+                            </div>
+                            <div>
+                                <p>Date: 5-15-2025</p>
+                            </div>
+                        </header>
+                        <section class="assignment-content">
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                </p>
+                            </div>
+                        <div>
+                            <button class="dl-btn">download</button>
+                        </div>
+                        </section>
+                    </article>
+
+                    <article class="assignment-box-controller">
+                        <header class="assignment-header">
+                            <div class="assignment-context">
+                                <p>Teacher: </p><span>Daniel</span>
+                                <p>Session Number: </p><span>2</span>
+                                <p>Instrument: </p> <span>Drums</span>
+                            </div>
+                            <div>
+                                <p>Date: 5-15-2025</p>
+                            </div>
+                        </header>
+                        <section class="assignment-content">
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                </p>
+                            </div>
+                        <div>
+                            <button class="dl-btn">download</button>
+                        </div>
+                        </section>
+                    </article>
+
+                    <article class="assignment-box-controller">
+                        <header class="assignment-header">
+                            <div class="assignment-context">
+                                <p>Teacher: </p><span>Daniel</span>
+                                <p>Session Number: </p><span>2</span>
+                                <p>Instrument: </p> <span>Drums</span>
+                            </div>
+                            <div>
+                                <p>Date: 5-15-2025</p>
+                            </div>
+                        </header>
+                        <section class="assignment-content">
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                </p>
+                            </div>
+                        <div>
+                            <button class="dl-btn">download</button>
+                        </div>
+                        </section>
+                    </article>
+
+                    <article class="assignment-box-controller">
+                        <header class="assignment-header">
+                            <div class="assignment-context">
+                                <p>Teacher: </p><span>Daniel</span>
+                                <p>Session Number: </p><span>2</span>
+                                <p>Instrument: </p> <span>Drums</span>
+                            </div>
+                            <div>
+                                <p>Date: 5-15-2025</p>
+                            </div>
+                        </header>
+                        <section class="assignment-content">
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                </p>
+                            </div>
+                        <div>
+                            <button class="dl-btn">download</button>
+                        </div>
+                        </section>
+                    </article>
+
+                    <article class="assignment-box-controller">
+                        <header class="assignment-header">
+                            <div class="assignment-context">
+                                <p>Teacher: </p><span>Daniel</span>
+                                <p>Session Number: </p><span>2</span>
+                                <p>Instrument: </p> <span>Drums</span>
+                            </div>
+                            <div>
+                                <p>Date: 5-15-2025</p>
+                            </div>
+                        </header>
+                        <section class="assignment-content">
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                </p>
+                            </div>
+                        <div>
+                            <button class="dl-btn">download</button>
+                        </div>
+                        </section>
+                    </article>
+                </section>
+        </section>
+    </main>
+
+    
+    <script src="script/sidenav.js"></script>
+    <script src="script/profile-dropdown-menu.js"></script>     
+</body>
+</html>

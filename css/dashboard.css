@@ -1,0 +1,1005 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root{
+  --base-clr: #FEFEFE;
+  --mainbg-clr:#F2F5FA;
+  --line-clr: #DAE3F8;
+  --hover-clr: #3788E5;
+  --text-clr: #0B1C33;
+  --accent-clr: #5e63ff;
+  --secondary-text-clr: #504E4E;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container{
+    background-color: var(--mainbg-clr);;
+}
+
+html{
+  font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5rem;
+}
+
+body{
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--base-clr);
+  color: var(--text-clr);
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+/*--------------------------- for sidebar -----------------------------*/
+#sidebar{
+  box-sizing: border-box;
+  height: 100vh;
+  width: 300px;
+  background-color: var(--base-clr);
+  border-right: 1px solid var(--line-clr);
+  position: sticky;
+  top: 0;
+  align-self: start;
+  transition: 300ms ease-in-out;
+  overflow: hidden;
+  text-wrap: nowrap;
+}
+
+.ul-links{
+  all: unset;
+  margin-top: 10px;
+}
+
+#sidebar ul{
+	list-style: none;
+  }
+
+/* When sidebar is collapsed */
+#sidebar.close {
+  width: 60px;
+}
+
+/* Collapse text but keep icon */
+#sidebar.close ul li a {
+  font-size: 0;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+/* Example icon style */
+#sidebar ul li a i {
+  font-size: 18px;
+}
+
+/* Optional: tooltip or hover title */
+#sidebar.close ul li a::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 70px;
+  background: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+#sidebar.close ul li a:hover::after {
+  opacity: 1;
+}
+
+.rotate svg:last-child{
+  rotate: 180deg;
+}
+
+/* Toggle Button hide image */
+#sidebar.close .logo-container {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+#sidebar.close .sidebar-header {
+    display: flex;
+    justify-content: center;
+  padding: 0;
+}
+
+/* Toggle Button */
+#toggle-btn {
+    border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#toggle-btn svg {
+  transition: rotate 150ms ease;
+}
+
+.sidebar-nav ul li a {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: #333;
+	padding: 10px 15px;
+	border-radius: 5px;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.hidden {
+    display: none;
+}
+
+.logo-link a{
+  height: fit-content;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-header {
+  height: 66px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 2px solid var(--line-clr);
+  background-color: black;
+}
+
+.logo-container img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Reset styles for all sidebar links */
+.ul-links a {
+  border-radius: .5em;
+  padding: .85em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  color: inherit;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 5px;
+}
+
+/* Apply hover effect to all relevant menu items */
+.ul-links li a:hover {
+  background-color: #e9aa36;
+  color: #FEFEFE;
+}
+
+/* Active state for the current page */
+.ul-links li a.active {
+  background-color: #DC9E2A;
+  color: #FEFEFE;
+  font-weight: bold;
+}
+
+
+/*--------------------------- sidebar end -----------------------------*/
+
+/*--------------------------- for saved job and profile -----------------------------*/
+.header-container{
+  background-color: black;
+	display: flex;
+  justify-content: flex-end; /* Aligns everything to the right */
+  padding: 15px 60px 15px 60px;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+	border-bottom: 2px solid var(--line-clr);
+}
+
+.profile-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+  background-color: #D9D9D9;
+  color: black;
+  position: relative;
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;  
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: none;
+  flex-direction: column;
+  width: 150px;
+  z-index: 1000;
+  padding: 5px 10px 5px 10px;
+}
+
+.dropdown a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  display: block;
+  font-size: 15px;
+}
+
+.prfl{
+  border-bottom: 1px solid var(--line-clr);
+}
+
+.dropdown a:hover {
+  background: #f0f0f0;
+}
+
+.show {
+  display: flex;
+}
+
+
+/*--------------------------- header and profile end -----------------------------*/
+
+.user-name-container{
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 20px;
+}
+
+/* Sidebar collapsed state adjustments */
+#sidebar.close .li-styling {
+    padding: 0;
+    gap: 5px; /* Reduce gap when sidebar is closed */
+}
+
+/* Default list item styling */
+.li-styling {
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: padding 0.3s ease, gap 0.3s ease;
+}
+
+/* User name text transitions */
+.user-name-container h3,
+.user-name-container h4 {
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+    overflow: hidden;
+}
+
+/* Hide user name text when sidebar is closed */
+#sidebar.close .user-name-container h3,
+#sidebar.close .user-name-container h4 {
+    opacity: 0;
+    max-height: 0;
+}
+
+/* Hide SVG icon by default */
+.user-avatar-icon {
+    display: none;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+}
+
+/* Show SVG icon only when sidebar is closed */
+#sidebar.close .user-avatar-icon {
+    display: block;
+}
+
+/* Adjust user container padding when sidebar is closed */
+#sidebar.close .user-name-container {
+    padding: 5px;
+}
+
+
+/* ------------------------------- main nav-tab styling -------------------------------- */
+
+.tabs-ctn{
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  }
+
+  
+.tabs {
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.tabs ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: #4A4A4A;
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 500;
+  align-items: center; /* Aligns icon and text */
+}
+
+.tabs .active a {
+  color: #DC9E2A;
+  font-weight: bold;
+}
+
+.tabs .active a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #DC9E2A;
+  bottom: -6px;
+  left: 0;
+}
+
+/* ------------------------------- main nav-tab styling END -------------------------------- */
+
+
+/*------------------------------------------ main container for notif ------------------------------------------- */
+.notif-main-ctn{
+    margin: min(40px, 7%);
+    margin-top: min(20px, 7%);
+    margin-bottom: min(20px, 7%);
+    display: flex;
+    gap: 20px;
+}
+
+.assignment-main-ctn{
+  display: flex;
+  flex-direction: column;
+  max-height: 500px; /* or whatever fits your design */
+  overflow-y: auto;
+  padding-right: 8px; /* optional: to prevent content from being hidden under the scrollbar */
+  padding-bottom: 10px;
+}
+
+.schedule-main-ctn{
+  margin: min(40px, 7%);
+  margin-top: min(20px, 7%);
+  margin-bottom: min(20px, 7%);
+  background-color: white;
+  border-radius: 15px;
+  padding:20px;
+  border: 1px solid #ddd; /* Light gray border */  
+}
+/*------------------------------------------ main container for notif END------------------------------------------- */
+
+.schedule-status-ctn{
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  max-height: 500px; /* or whatever fits your design */
+  overflow-y: auto;
+  padding-right: 8px; /* optional: to prevent content from being hidden under the scrollbar */
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.notification-head{
+  padding: 10px;
+}
+
+.content-header{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/*------------------------------ .status-message adjustments ----------------------------------*/
+.box-controller{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #003366;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-status-ctn .box-controller:nth-child(1) {
+  background-color: #d1e7ff; /* light blue */
+}
+
+.schedule-status-ctn .box-controller:nth-child(2) {
+  background-color: #e8f7db; /* light green */
+}
+
+.schedule-status-ctn .box-controller:nth-child(3) {
+  background-color: #fff3e6; /* light orange */
+}
+
+.schedule-status-ctn .box-controller:nth-child(4) {
+  background-color: #f2d7ff; /* light purple */
+}
+
+/*------------------------------ .status-message adjustments ----------------------------------*/
+.schedule-status-ctn .box-controller .status-message {
+  padding: 10px;
+  border-radius: 5px;
+  color: white; 
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.schedule-status-ctn .box-controller:nth-child(1) .status-message {
+  background-color: #276baa; 
+}
+
+.schedule-status-ctn .box-controller:nth-child(2) .status-message {
+  background-color: #12a127; 
+}
+
+.schedule-status-ctn .box-controller:nth-child(3) .status-message {
+  background-color: #902f14; 
+}
+
+.schedule-status-ctn .box-controller:nth-child(4) .status-message {
+  background-color: #791ba4; 
+}
+/*------------------------------ .status-message adjustments ned----------------------------------*/
+
+/*------------------------------ schedule styling ----------------------------------*/
+
+.schedule-list-ctn{
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  max-height: 480px; /* or whatever fits your design */
+  overflow-y: auto;
+  padding-right: 8px; /* optional: to prevent content from being hidden under the scrollbar */
+}
+
+.lesson-grid{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/*
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+*/
+
+.lesson-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-title {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.lesson-dates {
+  display: flex;
+  gap: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* ------------------------------------ booking schedule --------------------------------------- */
+
+
+/*------------------------------ assginment styling ----------------------------------*/
+.selector-wrapper > div {
+  flex: 1; /* Allow equal width */
+  margin-right: 20px; /* Optional spacing */
+}
+
+.selector-wrapper > div:last-child {
+  margin-right: 0;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  width: 100%; /* Ensure full width */
+}
+
+
+    .selector-wrapper{
+        display: flex;
+        justify-content: space-between;
+        width: 100%; /* Ensures it fills its parent container */
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+      border-radius: 8px;
+      padding: 10px;
+      gap: 40px;
+      background-color: rgb(241, 236, 236);
+      border: 1px solid gainsboro;
+    }
+
+    .custom-select {
+      background: white;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+      width: 100%; /* Make it fill the wrapper */
+        box-sizing: border-box; /* Prevent padding from increasing its width */
+    }
+
+    .options {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+      background: #f7f1f1;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+    }
+
+    .option {
+      padding: 12px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      background: #f2c744;
+    }
+
+    .option.selected {
+      background: #f2c744;
+    }
+
+    /* Calendar */
+    .calendar .day.selected {
+    background-color: #f2c744;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    }
+
+    .calendar {
+      padding: 20px 25px 20px 25px;
+      background-color: #F5F5F5;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .calendar select {
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+    }
+
+    .calendar .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .calendar .day {
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      background: rgb(203, 202, 202);
+    }
+
+    .calendar .day.disabled {
+      color: #aaa;
+      cursor: not-allowed;
+    }
+
+    .calendar .day:hover:not(.disabled) {
+      background: #f2c744;
+    }
+
+    .calendar .day-header {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .calendar .day.today {
+      font-weight: bold;
+      color: #fff;
+    background-color: #ff5b34; /* Vibrant orange */
+      border-radius: 50%;
+    }
+
+    .assignment-page-ctn{
+        display: flex;
+        justify-content: center;
+}
+.time-ctn {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      padding: 20px;
+      width: 300px;
+    }
+
+    .custom-select-wrapper {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .custom-select-time {
+        background: white;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+    }
+
+    .custom-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      z-index: 10;
+      display: none;
+    }
+
+    .custom-options.active {
+      display: block;
+    }
+
+    .custom-option {
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .custom-option:hover {
+      background: #f6c940;
+      color: #000;
+    }
+
+    .custom-option.selected {
+      background: #f6c940;
+      color: #000;
+    }
+
+    .time-box {
+      display: flex;
+      gap: 20px;
+      
+    }
+
+    .time-block {
+      display: flex;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .time-block.am {
+      background: #f6c940;
+      color: #fff;
+    }
+
+    .time-block.pm {
+      background: #ff5b34;
+      color: #fff;
+    }
+
+    .time-block h3{
+      font-size: 25px;
+      color: white;
+      padding: 10px 15px;
+      margin: 0;
+    align-content: center;
+    }
+
+    .date-box {
+      background: #fff;
+      border: 2px solid #dfdcdb;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .date-box p{
+        margin: 0;
+    }
+
+    .clock {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    margin: 20px auto;
+    border: 4px solid #ddd;
+    }
+
+    .clock-number {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+    }
+
+    /* Highlight selected time */
+    .clock-number.start-selected {
+    background-color: #f2c744;
+    border-radius: 50%;
+    padding: 4px 8px;
+    color: black;
+    }
+
+    .clock-number.end-selected {
+    background-color: #ff5b34;
+    border-radius: 50%;
+    padding: 4px 8px;
+    color: white;
+    }
+    
+    .circle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+    .calendar-time{
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .pm-style, .am-style{
+        background-color: gray;
+        padding: 10px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    .pm-style p,  .am-style p{
+        font-size: 10px;
+    }
+
+    .date, .month{
+        padding: 5px;
+    }
+
+    .date{
+        color: #6b6767;
+        background-color: white;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .month{
+        color: #fefefe;
+        background-color: #F17646;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+    }
+
+    .colon {
+        align-self: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+}
+
+.time-month-ctn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 5px 10px 5px 10px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #ddd;
+}
+
+.mont-year{
+    display: flex;
+    justify-content: space-between;
+}
+
+.start-end{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/*------------------------------ assginment styling END ----------------------------------*/
+
+/*----------------------------------- responsive ---------------------------------- */
+
+@media(max-width: 800px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding: 10px;
+  }
+  .related-job-card {
+    gap: 10px;
+  }
+
+  /* Remove toggle button when sidebar is collapsed */
+  #toggle-btn, #sidebar.close {
+    display: none;
+  }
+
+  #sidebar {
+    height: 60px;
+    width: 100%;
+    border-right: none;
+    border-top: 1px solid var(--line-clr);
+    padding: 0;
+    position: fixed;
+    top: unset;
+    bottom: 0;
+
+    > ul {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      overflow-x: scroll;
+    }
+
+    ul li {
+      height: 100%;
+    }
+
+    /* Icons should be visible, and text hidden */
+    ul a,
+    ul .dropdown-btn {
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      border-radius: 5px;
+      justify-content: center;
+    }
+
+    /* Hide text and span in responsive mode */
+    ul li span,
+    ul li:first-child,
+    .dropdown-btn svg:last-child {
+      display: none;
+    }
+
+
+    /* Show only icons in collapsed sidebar */
+    ul li a i {
+      display: block;
+      font-size: 1.5em;  /* Ensure icons are the right size */
+    }
+
+    ul li .sub-menu.show {
+      position: fixed;
+      bottom: 60px;
+      left: 0;
+      box-sizing: border-box;
+      height: 60px;
+      width: 100%;
+      background-color: var(--hover-clr);
+      border-top: 1px solid var(--line-clr);
+      display: flex;
+      justify-content: center;
+
+      > div {
+        overflow-x: auto;
+      }
+      li {
+        display: inline-flex;
+      }
+      a {
+        box-sizing: border-box;
+        padding: 1em;
+        width: auto;
+        justify-content: center;
+      }
+    }
+  }
+
+  .company-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sidebar-header{
+    display: none;
+  }
+
+  #sidebar ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.company-profile-card {
+  display: none;
+}
+
+}
+
+
+/* Tablet View */
+@media (max-width: 768px) {
+
+  
+}
+
+/* Mobile View */
+@media (max-width: 480px) {
+  
+
+}
