@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Message</title>
+    <style>
+    .email-container {
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+.email-header h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #202124;
+}
+
+.email-meta {
+  font-size: 14px;
+  color: #5f6368;
+  margin-bottom: 24px;
+}
+
+.email-body {
+  font-size: 14px;
+  color: #202124;
+  line-height: 1.6;
+}
+
+.email-sender {
+  font-weight: 600;
+  color: #202124;
+}
+
+.email-recipient {
+  color: #5f6368;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.email-date {
+  font-size: 13px;
+  color: #5f6368;
+  float: right;
+}
+
+.back-btn {
+      margin-bottom: 10px;
+      display: inline-block;
+      background: #e1ebf5;
+      padding: 6px 12px;
+      border-radius: 5px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    </style>
+</head>
+<Body>
+    <aside id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <a href="dashboardjobs.php" class="logo-link">
+                        <img src="logo/lds-logo.jpg" alt="lds-logo" id="sidebar-logo">
+                    </a>
+                </div>
+                <button onclick="toggleSidebar()" id="toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/>
+                    </svg>
+                </button>
+            </div>
+            <section class="li-styling">
+                <div class="user-name-container">
+                    <h3 class="user-name">Daniel Pagcaliwangan</h3>
+                    <h4 class="user-role">Instrument</h4>
+                    <div class="user-icon">
+                    <object type="image/svg+xml" data="/svg/drummer-svgrepo-com.svg" class="user-avatar-icon"></object>
+                    </div>
+                </div>
+                <ul class="ul-links">
+                <li>
+                    <a href="student-dashboard.html">
+                    <i class="fa-regular fa-bell"></i><span>Notification</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="message.html">
+                    <i class="fa-regular fa-message"></i><span>Message</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="schedule.html">
+                    <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="session-log.html">
+                    <i class="fa-solid fa-chalkboard-user"></i><span>Session Log</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                    <i class="fa-regular fa-credit-card"></i><span>Payments</span>
+                    </a>
+                </li>
+                </ul>
+            </section>
+        </nav>
+    </aside>
+
+    <main class="dashboard-container">
+        <header class="header-container">
+            <div class="dropdown-container">
+                <button class="profile-btn" id="dpBtn"><i class="fa-solid fa-user"></i></button>
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="#" class="prfl">Profile Settings</a>
+                    <a href="index.php">Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="schedule-main-ctn">
+            <section>
+                <div class="tabs-ctn">
+                    <nav class="tabs">
+                        <ul>
+                            <li class="tab active"><a href="inbox.html">Inbox</a></li>
+                            <li class="tab"><a href="assignment-page.html">Sent Message</a></li>
+                            <li class="tab"><a href="assignment-page.html">Send Message</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+
+            <section class="schedule-list-ctn">
+                <div class="email-container">
+                    <a class="back-btn" href="inbox.html">← Back to Inbox</a>
+                    <div class="email-header">
+                    <h2>Scheduling a Phone Interview - Backend Web Developer</h2>
+                    </div>
+
+                    <div class="email-meta">
+                    <div>
+                        <span class="email-sender">Daniel Pagcaliwangan</span>
+                        &lt;danielpagcaliwangan8@gmail.com&gt;
+                    </div>
+                    <div class="email-recipient">to aianbasagre@gmail.com</div>
+                    <div class="email-date">3 Dec 2024, 13:28</div>
+                    </div>
+
+                    <div class="email-body">
+                    Good day, Daniel Pagcaliwangan<br><br>
+
+                    I hope you're doing well. This is AST - Ship Owners Representative Office. I would like to schedule a phone interview with you to discuss the Web developer.<br><br>
+
+                    Could you kindly let me know a time that works best for you? I’m happy to accommodate your schedule and look forward to speaking with you.<br><br>
+
+                    Thank you, and I look forward to your reply!<br><br>
+
+                    Best regards,<br>
+                    Stefan Schmitt
+                    </div>
+                </div>                           
+            </section>  
+        </section>
+    </main>
+
+    <script>
+        const emailData = {
+          1: {
+            sender: "Acme Inc.",
+            subject: "Insights: The latest in industrial equipment and tools",
+            date: "Feb 26, 2025, 10:15AM",
+            email: "acme@example.com",
+            content: `
+              Hi, this is a sample message from Acme Inc. regarding the latest updates in industrial tools. 
+              You can learn more on our website or reach out to our support team.
+            `,
+            image: ""
+          },
+          2: {
+            sender: "Travel Tales",
+            subject: "Our latest Adventures and Destinations",
+            date: "March 26, 2025, 1:22PM",
+            email: "travel@example.com",
+            content: `
+              Ready for your next adventure? Discover exotic destinations and experiences curated for your dream travel.
+            `,
+            image: ""
+          },
+          3: {
+            sender: "Delta Enterprises.",
+            subject: "Delta Weekly News: Learn about important safety tips before you fly!",
+            date: "Jan 26, 2025, 3:45PM",
+            email: "delta@example.com",
+            content: `
+              Dear traveler, ensure your flight is safe and enjoyable by following these important travel tips.
+            `,
+            image: "/assets/sample-email.png"
+          }
+        };
+    
+        const id = localStorage.getItem('selectedInboxId');
+        const data = emailData[id];
+    
+        if (data) {
+          document.getElementById("email-subject").textContent = data.subject;
+          document.getElementById("email-meta").textContent = `${data.sender} <${data.email}> — ${data.date}`;
+          document.getElementById("email-content").innerHTML = data.content;
+          if (data.image) {
+            const img = document.getElementById("email-image");
+            img.src = data.image;
+            img.style.display = 'block';
+          }
+        }
+      </script>
+
+</body>
+</html>
