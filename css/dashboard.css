@@ -688,6 +688,9 @@ body{
         justify-content: center;
 }
 .time-ctn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
       background: white;
       border-radius: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -770,20 +773,11 @@ body{
     }
 
     .time-block h3{
-      font-size: 25px;
+      font-size: 18px;
       color: white;
-      padding: 10px 15px;
+      padding: 5px 10px;
       margin: 0;
     align-content: center;
-    }
-
-    .date-box {
-      background: #fff;
-      border: 2px solid #dfdcdb;
-      border-radius: 6px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 12px;
     }
 
     .date-box p{
@@ -807,32 +801,6 @@ body{
     color: #333;
     transition: background 0.3s, color 0.3s;
     }
-
-    /* Highlight selected time */
-    .clock-number.start-selected {
-    background-color: #f2c744;
-    border-radius: 50%;
-    padding: 4px 8px;
-    color: black;
-    }
-
-    .clock-number.end-selected {
-    background-color: #ff5b34;
-    border-radius: 50%;
-    padding: 4px 8px;
-    color: white;
-    }
-    
-    .circle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  color: #fff;
-  text-align: center;
-  line-height: 20px;
-  font-size: 12px;
-}
 
     .calendar-time{
         display: flex;
@@ -880,10 +848,9 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 1rem 0;
-    padding: 5px 10px 5px 10px;
+    padding: 8px 10px 8px 10px;
     border-radius: 12px;
-    background: #fff;
+    background: #dedbdb;
     box-shadow: inset 0 0 0 1px #ddd;
 }
 

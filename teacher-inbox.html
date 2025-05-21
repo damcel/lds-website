@@ -76,38 +76,37 @@
                     </div>
                 </div>
                 <ul class="ul-links">
-                  <li>
-                    <a href="index.html">
-                      <i class="fa-regular fa-bell"></i><span>Notification</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="inbox.html">
-                      <i class="fa-regular fa-message"></i><span>Message</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="schedule.html">
-                      <!-- SVG Icon -->
-                      <i class="fa-regular fa-calendar-check"></i><span>Lesson Schedule</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <!-- SVG Icon -->
-                      <i class="fa-regular fa-calendar-check"></i><span>Practice Schedule</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="session-log.html">
-                      <i class="fa-solid fa-chalkboard-user"></i><span>Session Log</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="student-payment.html">
-                      <i class="fa-regular fa-credit-card"></i><span>Payments</span>
-                    </a>
-                  </li>
+                    <li>
+                      <a href="teacher-dashboard.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-bell"></i><span>Notification</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="teacher-inbox.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-message"></i><span>Inbox</span>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="#">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-clipboard"></i><span>Student Assignment Log</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-credit-card"></i><span>Pay Slip</span>
+                      </a>
+                    </li>
                 </ul>
             </section>
         </nav>
@@ -129,8 +128,9 @@
                 <div class="tabs-ctn">
                     <nav class="tabs">
                         <ul>
-                            <li class="tab active"><a href="student-payment.html">Payment</a></li>
-                            <li class="tab"><a href="student-paid-sessions.html">Paid Sessions</a></li>
+                            <li class="tab active"><a href="inbox.html">Inbox</a></li>
+                            <li class="tab"><a href="assignment-page.html">Sent Message</a></li>
+                            <li class="tab"><a href="assignment-page.html">Send Message</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -174,5 +174,14 @@
 
     <script src="script/sidenav.js"></script>
     <script src="script/profile-dropdown-menu.js"></script>
+
+    <!-- ✅ JavaScript for redirecting on row click -->
+    <script>
+      function handleRowClick(row) {
+        const rowId = row.getAttribute('data-id');
+        localStorage.setItem('selectedInboxId', rowId);
+        window.location.href = "teacher-message-details.html";
+      }
+    </script>
 </body>
 </html>

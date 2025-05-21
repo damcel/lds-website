@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Message</title>
+    <style>
+.calendar-schedule-container {
+      display: flex;
+      gap: 24px;
+      padding: 16px;
+      font-family: sans-serif;
+    }
+
+    .available-time {
+      flex: 1;
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .available-time h2 {
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .session-box {
+  display: none; /* Hide session boxes initially */
+  background: #d1d1d1;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.combo-box {
+    position: relative;
+    width: 350px;
+  }
+  .combo-box label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+    color: #333;
+  }
+  .combo-box input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .combo-box input:focus {
+    border-color: #facc15;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.5);
+  }
+  .combo-box ul {
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: white;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    display: none;
+  }
+  .combo-box ul li {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  .combo-box ul li.highlighted,
+  .combo-box ul li:hover {
+    background-color: #facc15;
+  }
+  .combo-box ul li.no-results {
+    color: #999;
+    cursor: default;
+  }
+
+  .student-calendar{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #dc3545; /* Red */
+      color: white;
+    }
+
+    tbody tr:hover {
+      background-color: #f9d6d5; /* Light red tint for hover */
+    }
+
+    td i {
+      margin-left: 5px;
+      color: #dc3545; /* Red icon */
+    }
+
+    /* Make session number column narrow */
+th.session-number,
+td:first-child {
+  width: 100px;
+  text-align: center;
+}
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <a href="dashboardjobs.php" class="logo-link">
+                        <img src="logo/lds-logo.jpg" alt="lds-logo" id="sidebar-logo">
+                    </a>
+                </div>
+                <button onclick="toggleSidebar()" id="toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/>
+                    </svg>
+                </button>
+            </div>
+            <section class="li-styling">
+                <div class="user-name-container">
+                    <h3 class="user-name">Daniel Pagcaliwangan</h3>
+                    <h4 class="user-role">Instrument</h4>
+                    <div class="user-icon">
+                      <object type="image/svg+xml" data="/svg/drummer-svgrepo-com.svg" class="user-avatar-icon"></object>
+                    </div>
+                </div>
+                <ul class="ul-links">
+                    <li>
+                      <a href="teacher-dashboard.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-bell"></i><span>Notification</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="teacher-inbox.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-message"></i><span>Inbox</span>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="teacher-schedule.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="student-assignment-log.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-clipboard"></i><span>Student Assignment Log</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-credit-card"></i><span>Pay Slip</span>
+                      </a>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </aside>
+    
+    <main class="dashboard-container">
+        <header class="header-container">
+            <div class="dropdown-container">
+                <button class="profile-btn" id="dpBtn"><i class="fa-solid fa-user"></i></button>
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="#" class="prfl">Profile Settings</a>
+                    <a href="index.php">Logout</a>
+                </div>
+            </div>
+        </header>
+        <section class="calendar-schedule-container">
+            <div class="combo-box">
+                <label for="student-combo">Search or select student</label>
+                <input type="text" id="student-combo" autocomplete="off" placeholder="Type or select student" />
+                <ul id="student-options"></ul>
+            </div>
+    
+            <!-- Available Time Panel (initially hidden) -->
+            <div class="available-time" id="assignment-panel">
+              <h2>Sessions</h2>
+              <div class="session-box">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="session-number">Session Number</th>
+                          <th>Date</th>
+                          <th>Instrument</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>2025-06-01</td>
+                          <td>Drum <i class="fa-solid fa-drum"></i></td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>2025-06-01</td>
+                          <td>Drum <i class="fa-solid fa-drum"></i></td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>2025-06-01</td>
+                          <td>Drum <i class="fa-solid fa-drum"></i></td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>2025-06-01</td>
+                          <td>Drum <i class="fa-solid fa-drum" ></i></td>
+                        </tr>
+                      </tbody>
+                    </table>                                              
+              </div>
+            </div>
+          </section>
+    </main>
+
+    <script src="script/sidenav.js"></script>
+    <script src="script/profile-dropdown-menu.js"></script>
+
+    <script>
+        (function() {
+          const students = [
+            "Alice Johnson",
+            "Bob Smith",
+            "Charlie Davis",
+            "Diana Prince",
+            "Ethan Hunt",
+            "Fiona Apple",
+            "George Clooney",
+            "Hannah Montana",
+            "Ian McKellen",
+            "Jane Austen"
+          ];
+      
+          // Sample schedules per student
+          const schedules = {
+            "Alice Johnson": [
+              { session: 1, date: "2025-06-01", instrument: "Piano" },
+              { session: 2, date: "2025-06-08", instrument: "Piano" },
+            ],
+            "Bob Smith": [
+              { session: 1, date: "2025-06-02", instrument: "Guitar" },
+            ],
+            "Charlie Davis": [
+              { session: 1, date: "2025-06-05", instrument: "Drum" },
+              { session: 2, date: "2025-06-12", instrument: "Drum" },
+              { session: 3, date: "2025-06-19", instrument: "Drum" },
+            ],
+            // Default for others (example)
+            "default": [
+              { session: 1, date: "2025-06-01", instrument: "Violin" }
+            ]
+          };
+      
+          const input = document.getElementById('student-combo');
+          const list = document.getElementById('student-options');
+          const assignmentPanel = document.getElementById('assignment-panel');
+          const availableTimeHeading = assignmentPanel.querySelector('h2');
+          const sessionBox = assignmentPanel.querySelector('.session-box');
+          const tbody = sessionBox.querySelector('tbody');
+      
+          let filtered = [];
+          let highlightedIndex = -1;
+      
+          function renderList(items) {
+            list.innerHTML = '';
+            if (items.length === 0) {
+              const li = document.createElement('li');
+              li.textContent = 'No results found';
+              li.classList.add('no-results');
+              list.appendChild(li);
+              highlightedIndex = -1;
+              return;
+            }
+            items.forEach((item, idx) => {
+              const li = document.createElement('li');
+              li.textContent = item;
+              li.setAttribute('data-index', idx);
+              li.onclick = () => {
+                selectStudent(item);
+                hideList();
+              };
+              list.appendChild(li);
+            });
+            highlightedIndex = -1;
+          }
+      
+          function filterItems(query) {
+            filtered = students.filter(s => s.toLowerCase().includes(query.toLowerCase()));
+            renderList(filtered);
+            showList();
+          }
+      
+          function showList() {
+            list.style.display = 'block';
+          }
+          function hideList() {
+            list.style.display = 'none';
+            highlightedIndex = -1;
+          }
+      
+          function updateHighlight(items) {
+            items.forEach(li => li.classList.remove('highlighted'));
+            if (highlightedIndex >= 0) {
+              items[highlightedIndex].classList.add('highlighted');
+              items[highlightedIndex].scrollIntoView({block: 'nearest'});
+            }
+          }
+      
+          function selectStudent(name) {
+            input.value = name;
+            updateSchedule(name);
+            showSchedule();
+          }
+      
+          function updateSchedule(name) {
+            availableTimeHeading.textContent = name;
+            // Clear old rows
+            tbody.innerHTML = '';
+      
+            // Get schedule or fallback to default
+            const schedule = schedules[name] || schedules["default"];
+      
+            schedule.forEach(session => {
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td>${session.session}</td>
+                <td>${session.date}</td>
+                <td>${session.instrument} ${getInstrumentIcon(session.instrument)}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+          }
+      
+          function getInstrumentIcon(instrument) {
+            // Just some examples; adjust as needed
+            switch(instrument.toLowerCase()) {
+              case 'drum': return '<i class="fa-solid fa-drum"></i>';
+              case 'guitar': return '<i class="fa-solid fa-guitar"></i>';
+              case 'piano': return '<i class="fa-solid fa-music"></i>';
+              case 'violin': return '<i class="fa-solid fa-violin"></i>';
+              default: return '';
+            }
+          }
+      
+          function showSchedule() {
+            sessionBox.style.display = 'block';
+          }
+      
+          input.addEventListener('input', e => {
+            const val = e.target.value;
+            if (!val) {
+              hideList();
+              // Also hide schedule if input cleared
+              sessionBox.style.display = 'none';
+              availableTimeHeading.textContent = '';
+              tbody.innerHTML = '';
+              return;
+            }
+            filterItems(val);
+          });
+      
+          input.addEventListener('keydown', e => {
+            if (list.style.display === 'none') return;
+            const items = list.querySelectorAll('li:not(.no-results)');
+            if (items.length === 0) return;
+      
+            if (e.key === 'ArrowDown') {
+              e.preventDefault();
+              if (highlightedIndex < items.length -1) {
+                highlightedIndex++;
+                updateHighlight(items);
+              }
+            } else if (e.key === 'ArrowUp') {
+              e.preventDefault();
+              if (highlightedIndex > 0) {
+                highlightedIndex--;
+                updateHighlight(items);
+              }
+            } else if (e.key === 'Enter') {
+              e.preventDefault();
+              if (highlightedIndex >= 0 && highlightedIndex < items.length) {
+                selectStudent(items[highlightedIndex].textContent);
+                hideList();
+              }
+            } else if (e.key === 'Escape') {
+              hideList();
+            }
+          });
+      
+          input.addEventListener('focus', () => {
+            if (!input.value) {
+                filtered = students.slice();
+                renderList(filtered);
+                showList();
+            } else {
+                filterItems(input.value);
+            }
+          });
+      
+          document.addEventListener('click', e => {
+            if (!e.target.closest('.combo-box')) {
+              hideList();
+            }
+          });
+        })();
+      </script>
+      
+</body>
+</html>
