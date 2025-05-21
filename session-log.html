@@ -33,6 +33,115 @@
       margin-left: 5px;
       color: #dc3545; /* Red icon */
     }
+
+    /* Make session number column narrow */
+th.session-number,
+td:first-child {
+  width: 100px;
+  text-align: center;
+}
+
+/* View button style */
+.view-btn {
+  background-color: #4428ce;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.view-btn i {
+    color: white;
+}
+
+.view-btn:hover {
+  background-color: #b9b6c8;
+}
+
+/* Modal overlay */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 10000;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Modal content styled like your email container */
+.modal-content.email-container {
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border: 1px solid #ddd;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+}
+
+/* Modal header */
+.email-header {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #202124;
+}
+
+/* Meta info */
+.email-meta {
+  font-size: 14px;
+  color: #5f6368;
+  margin-bottom: 24px;
+}
+
+/* Email body */
+.email-body {
+  font-size: 15px;
+  color: #202124;
+  line-height: 1.6;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: #5f6368;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #dc3545; /* red accent on hover */
+}
+
+/* Row hover and active styles */
+tbody tr {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover,
+tbody tr.active-row {
+  background-color: #f9d6d5;
+}
+
     </style>
 </head>
 <body>
@@ -60,7 +169,7 @@
                 </div>
                 <ul class="ul-links">
                   <li>
-                    <a href="student-dashboard.html">
+                    <a href="index.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-bell"></i><span>Notification</span>
                     </a>
@@ -71,11 +180,16 @@
                       <i class="fa-regular fa-message"></i><span>Message</span>
                     </a>
                   </li>
-                  
                   <li>
                     <a href="schedule.html">
                       <!-- SVG Icon -->
-                      <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                      <i class="fa-regular fa-calendar-check"></i><span>Lesson Schedule</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-calendar-check"></i><span>Practice Schedule</span>
                     </a>
                   </li>
                   <li>
@@ -85,7 +199,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="student-payment.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-credit-card"></i><span>Payments</span>
                     </a>
@@ -113,6 +227,7 @@
                     <nav class="tabs">
                         <ul>
                             <li class="tab active"><a href="session-log.html">Session Log</a></li>
+                            <li class="tab"><a href="paid-sessions.html">Sessions</a></li>
                             <li class="tab"><a href="assignment-page.html">Assignment Log</a></li>
                         </ul>
                     </nav>
@@ -121,38 +236,42 @@
             <section class="schedule-list-ctn">
                 <section class="lesson-grid">
                     <article class="lesson-card">
-                        <table>
-                            <thead>
-                              <tr>
-                                <th>Session Number</th>
-                                <th>Date</th>
-                                <th>Instrument</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>2025-06-01</td>
-                                <td>Drum <i class="fa-solid fa-drum"></i></td>
-                              </tr>
-                              <tr>
-                                <td>1</td>
-                                <td>2025-06-01</td>
-                                <td>Drum <i class="fa-solid fa-drum"></i></td>
-                              </tr>
-                              <tr>
-                                <td>1</td>
-                                <td>2025-06-01</td>
-                                <td>Drum <i class="fa-solid fa-drum"></i></td>
-                              </tr>
-                              <tr>
-                                <td>1</td>
-                                <td>2025-06-01</td>
-                                <td>Drum <i class="fa-solid fa-drum"></i></td>
-                              </tr>
-                              
-                            </tbody>
-                          </table>                        
+                      <table>
+                        <thead>
+                          <tr>
+                            <th class="session-number">Session Number</th>
+                            <th>Date</th>
+                            <th>Instrument</th>
+                            <th>Assignment</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>2025-06-01</td>
+                            <td>Drum <i class="fa-solid fa-drum"></i></td>
+                            <td><button class="view-btn"><i class="fa-solid fa-eye"></i> View</button></td>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>2025-06-01</td>
+                            <td>Drum <i class="fa-solid fa-drum"></i></td>
+                            <td><button class="view-btn"><i class="fa-solid fa-eye"></i> View</button></td>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>2025-06-01</td>
+                            <td>Drum <i class="fa-solid fa-drum"></i></td>
+                            <td><button class="view-btn"><i class="fa-solid fa-eye"></i> View</button></td>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>2025-06-01</td>
+                            <td>Drum <i class="fa-solid fa-drum" ></i></td>
+                            <td><button class="view-btn"><i class="fa-solid fa-eye"></i> View</button></td>
+                          </tr>
+                        </tbody>
+                      </table>                                              
                     </article>
                   
                   </section>                  
@@ -161,8 +280,69 @@
 
     </main>
 
+    <!-- Modal -->
+    <div id="sessionModal" class="modal">
+        <div class="modal-content email-container">
+        <button class="close-btn" aria-label="Close modal">&times;</button>
+        <h2 class="email-header">Session Details</h2>
+        <div class="email-meta">
+            <div><strong>Session Number:</strong> <span id="modal-session-number"></span></div>
+            <div><strong>Date:</strong> <span id="modal-session-date"></span></div>
+            <div><strong>Instrument:</strong> <span id="modal-session-instrument"></span></div>
+        </div>
+        <div class="email-body">
+            <p>Here you can add more detailed information about this session.</p>
+        </div>
+        </div>
+    </div>
+  
+
     
     <script src="script/sidenav.js"></script>
-    <script src="script/profile-dropdown-menu.js"></script>     
+    <script src="script/profile-dropdown-menu.js"></script>   
+    
+    <script>
+        const modal = document.getElementById('sessionModal');
+const closeBtn = modal.querySelector('.close-btn');
+
+// Modal content fields
+const sessionNumberElem = document.getElementById('modal-session-number');
+const sessionDateElem = document.getElementById('modal-session-date');
+const sessionInstrumentElem = document.getElementById('modal-session-instrument');
+
+document.querySelectorAll("tbody tr").forEach(row => {
+  row.addEventListener("click", () => {
+    // Remove active class from all rows
+    document.querySelectorAll("tbody tr").forEach(r => r.classList.remove("active-row"));
+
+    // Add active class to clicked row
+    row.classList.add("active-row");
+
+    // Fill modal content from clicked row's cells
+    const cells = row.querySelectorAll('td');
+    sessionNumberElem.textContent = cells[0].textContent.trim();
+    sessionDateElem.textContent = cells[1].textContent.trim();
+    sessionInstrumentElem.innerHTML = cells[2].innerHTML.trim(); // keep the icon HTML
+
+    // Show modal
+    modal.style.display = 'flex';
+  });
+});
+
+// Close modal handlers
+closeBtn.addEventListener("click", () => {
+  modal.style.display = 'none';
+  document.querySelectorAll("tbody tr").forEach(r => r.classList.remove("active-row"));
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+    document.querySelectorAll("tbody tr").forEach(r => r.classList.remove("active-row"));
+  }
+});
+
+      </script>
+      
 </body>
 </html>

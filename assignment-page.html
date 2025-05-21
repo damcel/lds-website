@@ -34,18 +34,40 @@
     font-size: 15px;
   }
 
-  .dl-btn{
+  .dl-btn {
     color: white;
     padding: 10px;
     border-radius: 8px;
-    background-color: red;
+    background-color: brown; /* Changed to brown */
     border: none;
-  }
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dl-btn:hover {
+    background-color: #5c2e00; /* Darker brown on hover */
+    transform: translateY(-1px); /* Slight lift effect */
+}
 
   .assignment-content{
     display: flex;
     justify-content: space-between;
   }
+
+  .see-more-text {
+        display: inline-block;
+        color: #007bff;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        user-select: none;
+    }
+
+    .see-more-text:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
   
     </style>
 </head>
@@ -74,7 +96,7 @@
                 </div>
                 <ul class="ul-links">
                   <li>
-                    <a href="student-dashboard.html">
+                    <a href="index.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-bell"></i><span>Notification</span>
                     </a>
@@ -85,11 +107,16 @@
                       <i class="fa-regular fa-message"></i><span>Message</span>
                     </a>
                   </li>
-                  
                   <li>
                     <a href="schedule.html">
                       <!-- SVG Icon -->
-                      <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                      <i class="fa-regular fa-calendar-check"></i><span>Lesson Schedule</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-calendar-check"></i><span>Practice Schedule</span>
                     </a>
                   </li>
                   <li>
@@ -99,7 +126,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="student-payment.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-credit-card"></i><span>Payments</span>
                     </a>
@@ -127,6 +154,7 @@
                     <nav class="tabs">
                         <ul>
                             <li class="tab"><a href="session-log.html">Session Log</a></li>
+                            <li class="tab"><a href="paid-sessions.html">Sessions</a></li>
                             <li class="tab active"><a href="assignment-page.html">Assignment Log</a></li>
                         </ul>
                     </nav>
@@ -137,9 +165,9 @@
                     <article class="assignment-box-controller">
                         <header class="assignment-header">
                             <div class="assignment-context">
-                                <p>Teacher: </p><span>Daniel</span>
-                                <p>Session Number: </p><span>2</span>
-                                <p>Instrument: </p> <span>Drums</span>
+                                <p>Teacher: <i class="fa-solid fa-chalkboard-user"></i></p><span>Daniel</span>
+                                <p>Session Number: <i class="fa-solid fa-hashtag"></i></p><span>2</span>
+                                <p>Instrument: <i class="fa-solid fa-drum"></i></p> <span>Drums</span>
                             </div>
                             <div>
                                 <p>Date: 5-15-2025</p>
@@ -148,22 +176,29 @@
                         <section class="assignment-content">
                             <div>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
-                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt
+                                    <!-- Until here only -->
+                    
+                                    <span class="more-text" style="display: none;">
+                                        <!-- to display this other text -->
+                                        praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, 
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at a necessitatibus, ipsa reiciendis laudantium delectus tempora excepturi provident quasi officiis facilis laborum dolorem nam! Enim nesciunt quidem laborum nulla.
+                                    </span>
                                 </p>
+                                <span class="see-more-text">See More</span>
                             </div>
-                        <div>
-                            <button class="dl-btn">download</button>
-                        </div>
+                            <div>
+                                <button class="dl-btn">Download</button>
+                            </div>
                         </section>
                     </article>
                     
                     <article class="assignment-box-controller">
                         <header class="assignment-header">
                             <div class="assignment-context">
-                                <p>Teacher: </p><span>Daniel</span>
-                                <p>Session Number: </p><span>2</span>
-                                <p>Instrument: </p> <span>Drums</span>
+                                <p>Teacher: <i class="fa-solid fa-chalkboard-user"></i></p><span>Daniel</span>
+                                <p>Session Number: <i class="fa-solid fa-hashtag"></i></p><span>2</span>
+                                <p>Instrument: <i class="fa-solid fa-drum"></i></p> <span>Drums</span>
                             </div>
                             <div>
                                 <p>Date: 5-15-2025</p>
@@ -172,22 +207,29 @@
                         <section class="assignment-content">
                             <div>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
-                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt
+                                    <!-- Until here only -->
+                    
+                                    <span class="more-text" style="display: none;">
+                                        <!-- to display this other text -->
+                                        praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, 
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at a necessitatibus, ipsa reiciendis laudantium delectus tempora excepturi provident quasi officiis facilis laborum dolorem nam! Enim nesciunt quidem laborum nulla.
+                                    </span>
                                 </p>
+                                <span class="see-more-text">See More</span>
                             </div>
-                        <div>
-                            <button class="dl-btn">download</button>
-                        </div>
+                            <div>
+                                <button class="dl-btn">Download</button>
+                            </div>
                         </section>
                     </article>
 
                     <article class="assignment-box-controller">
                         <header class="assignment-header">
                             <div class="assignment-context">
-                                <p>Teacher: </p><span>Daniel</span>
-                                <p>Session Number: </p><span>2</span>
-                                <p>Instrument: </p> <span>Drums</span>
+                                <p>Teacher: <i class="fa-solid fa-chalkboard-user"></i></p><span>Daniel</span>
+                                <p>Session Number: <i class="fa-solid fa-hashtag"></i></p><span>2</span>
+                                <p>Instrument: <i class="fa-solid fa-drum"></i></p> <span>Drums</span>
                             </div>
                             <div>
                                 <p>Date: 5-15-2025</p>
@@ -196,22 +238,29 @@
                         <section class="assignment-content">
                             <div>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
-                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt
+                                    <!-- Until here only -->
+                    
+                                    <span class="more-text" style="display: none;">
+                                        <!-- to display this other text -->
+                                        praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, 
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at a necessitatibus, ipsa reiciendis laudantium delectus tempora excepturi provident quasi officiis facilis laborum dolorem nam! Enim nesciunt quidem laborum nulla.
+                                    </span>
                                 </p>
+                                <span class="see-more-text">See More</span>
                             </div>
-                        <div>
-                            <button class="dl-btn">download</button>
-                        </div>
+                            <div>
+                                <button class="dl-btn">Download</button>
+                            </div>
                         </section>
                     </article>
 
                     <article class="assignment-box-controller">
                         <header class="assignment-header">
                             <div class="assignment-context">
-                                <p>Teacher: </p><span>Daniel</span>
-                                <p>Session Number: </p><span>2</span>
-                                <p>Instrument: </p> <span>Drums</span>
+                                <p>Teacher: <i class="fa-solid fa-chalkboard-user"></i></p><span>Daniel</span>
+                                <p>Session Number: <i class="fa-solid fa-hashtag"></i></p><span>2</span>
+                                <p>Instrument: <i class="fa-solid fa-drum"></i></p> <span>Drums</span>
                             </div>
                             <div>
                                 <p>Date: 5-15-2025</p>
@@ -220,22 +269,29 @@
                         <section class="assignment-content">
                             <div>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
-                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt
+                                    <!-- Until here only -->
+                    
+                                    <span class="more-text" style="display: none;">
+                                        <!-- to display this other text -->
+                                        praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, 
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at a necessitatibus, ipsa reiciendis laudantium delectus tempora excepturi provident quasi officiis facilis laborum dolorem nam! Enim nesciunt quidem laborum nulla.
+                                    </span>
                                 </p>
+                                <span class="see-more-text">See More</span>
                             </div>
-                        <div>
-                            <button class="dl-btn">download</button>
-                        </div>
+                            <div>
+                                <button class="dl-btn">Download</button>
+                            </div>
                         </section>
                     </article>
 
                     <article class="assignment-box-controller">
                         <header class="assignment-header">
                             <div class="assignment-context">
-                                <p>Teacher: </p><span>Daniel</span>
-                                <p>Session Number: </p><span>2</span>
-                                <p>Instrument: </p> <span>Drums</span>
+                                <p>Teacher: <i class="fa-solid fa-chalkboard-user"></i></p><span>Daniel</span>
+                                <p>Session Number: <i class="fa-solid fa-hashtag"></i></p><span>2</span>
+                                <p>Instrument: <i class="fa-solid fa-drum"></i></p> <span>Drums</span>
                             </div>
                             <div>
                                 <p>Date: 5-15-2025</p>
@@ -244,22 +300,29 @@
                         <section class="assignment-content">
                             <div>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
-                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt
+                                    <!-- Until here only -->
+                    
+                                    <span class="more-text" style="display: none;">
+                                        <!-- to display this other text -->
+                                        praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, 
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at a necessitatibus, ipsa reiciendis laudantium delectus tempora excepturi provident quasi officiis facilis laborum dolorem nam! Enim nesciunt quidem laborum nulla.
+                                    </span>
                                 </p>
+                                <span class="see-more-text">See More</span>
                             </div>
-                        <div>
-                            <button class="dl-btn">download</button>
-                        </div>
+                            <div>
+                                <button class="dl-btn">Download</button>
+                            </div>
                         </section>
                     </article>
 
                     <article class="assignment-box-controller">
                         <header class="assignment-header">
                             <div class="assignment-context">
-                                <p>Teacher: </p><span>Daniel</span>
-                                <p>Session Number: </p><span>2</span>
-                                <p>Instrument: </p> <span>Drums</span>
+                                <p>Teacher: <i class="fa-solid fa-chalkboard-user"></i></p><span>Daniel</span>
+                                <p>Session Number: <i class="fa-solid fa-hashtag"></i></p><span>2</span>
+                                <p>Instrument: <i class="fa-solid fa-drum"></i></p> <span>Drums</span>
                             </div>
                             <div>
                                 <p>Date: 5-15-2025</p>
@@ -268,37 +331,20 @@
                         <section class="assignment-content">
                             <div>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
-                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt
+                                    <!-- Until here only -->
+                    
+                                    <span class="more-text" style="display: none;">
+                                        <!-- to display this other text -->
+                                        praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, 
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at a necessitatibus, ipsa reiciendis laudantium delectus tempora excepturi provident quasi officiis facilis laborum dolorem nam! Enim nesciunt quidem laborum nulla.
+                                    </span>
                                 </p>
-                            </div>
-                        <div>
-                            <button class="dl-btn">download</button>
-                        </div>
-                        </section>
-                    </article>
-
-                    <article class="assignment-box-controller">
-                        <header class="assignment-header">
-                            <div class="assignment-context">
-                                <p>Teacher: </p><span>Daniel</span>
-                                <p>Session Number: </p><span>2</span>
-                                <p>Instrument: </p> <span>Drums</span>
+                                <span class="see-more-text">See More</span>
                             </div>
                             <div>
-                                <p>Date: 5-15-2025</p>
+                                <button class="dl-btn">Download</button>
                             </div>
-                        </header>
-                        <section class="assignment-content">
-                            <div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
-                                    praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
-                                </p>
-                            </div>
-                        <div>
-                            <button class="dl-btn">download</button>
-                        </div>
                         </section>
                     </article>
                 </section>
@@ -307,6 +353,22 @@
 
     
     <script src="script/sidenav.js"></script>
-    <script src="script/profile-dropdown-menu.js"></script>     
+    <script src="script/profile-dropdown-menu.js"></script>
+    <script>
+        document.querySelectorAll('.see-more-text').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const moreText = this.parentElement.querySelector('.more-text');
+                const link = this;
+    
+                if (moreText.style.display === 'none' || moreText.style.display === '') {
+                    moreText.style.display = 'inline';
+                    link.textContent = 'See Less';
+                } else {
+                    moreText.style.display = 'none';
+                    link.textContent = 'See More';
+                }
+            });
+        });
+    </script>         
 </body>
 </html>
