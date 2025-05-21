@@ -6,6 +6,185 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <title>Teacher Dashboard</title>
+    <style>
+        .job-search-container{
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+	flex: 1; 
+  min-width: 50%; 
+	display: flex;
+  flex-direction: column;
+}
+
+
+.currency-date-aside{
+	display: flex;
+    flex-direction: column;
+    gap: 20px;
+	width: 100%;
+    max-width: 350px;
+}
+
+.search-select {
+    color: #6b6a6a;
+    flex: 1;
+    padding: 8px 8px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    min-width: 180px; /* Prevents it from being too small */
+    max-width: 460px; /* Keeps it balanced */
+}
+
+.dashboard-src-btn{
+    background-color: #e53935; 
+    color: #eeeaea;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* --------------------------- ASIDE HEADER ------------------------------------------- */
+.applicant-container {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .aside-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  }
+
+  .aside-header h2 {
+  font-size: 18px;
+  color: #0A1B39;
+  font-weight: bold;
+  margin: 0;
+  }
+
+  .position-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0A1B39;
+  }
+
+  .applicant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  }
+
+  .applicant-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #cecbcb;
+  }
+
+  .applicant-card:hover {
+  transform: scale(1.03);
+  }
+
+  .info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  }
+
+  .info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  }
+
+  .text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  }
+
+  .name-time {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  }
+
+  .name {
+  font-weight: bold;
+  color: #0A1B39;
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  }
+
+  .time {
+  font-size: 12px;
+  color: #888;
+  margin: 2px 0 0;
+  }
+
+  .position-label {
+  background-color: none;
+  border: 1px solid #b9e0ff;
+  color: #0a66c2;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  }
+
+  .view-all {
+  text-align: right;
+  }
+
+  .view-all button {
+    all: unset; /* resets default button styles */
+    color: #2a00ff;
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .view-all button:hover {
+    text-decoration: underline;
+  }
+
+  .instructor-name{
+    font-size: 15px;
+    font-weight: 500;
+    color: #888;
+  }
+
+  .instrument-type{
+    font-weight: 600;
+  color: #0A1B39;
+  margin: 0;
+  font-size: 18px;
+  }
+
+    </style>
 </head>
 <body>
     <aside id="sidebar">
@@ -24,7 +203,7 @@
             </div>
             <section class="li-styling">
                 <div class="user-name-container">
-                    <h3 class="user-name">Teacher Name</h3>
+                    <h3 class="user-name">Daniel Pagcaliwangan</h3>
                     <h4 class="user-role">Instrument</h4>
                     <div class="user-icon">
                       <object type="image/svg+xml" data="/svg/drummer-svgrepo-com.svg" class="user-avatar-icon"></object>
@@ -32,15 +211,15 @@
                 </div>
                 <ul class="ul-links">
                   <li>
-                    <a href="#">
+                    <a href="teacher-dashboard.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-bell"></i><span>Notification</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="teacher-inbox.html">
                       <!-- SVG Icon -->
-                      <i class="fa-regular fa-message"></i><span>Message</span>
+                      <i class="fa-regular fa-message"></i><span>Inbox</span>
                     </a>
                   </li>
                   
@@ -62,13 +241,13 @@
                       <i class="fa-regular fa-credit-card"></i><span>Pay Slip</span>
                     </a>
                   </li>
-                </ul>
+              </ul>
             </section>
         </nav>
     </aside>
     
     <main class="dashboard-container">
-        <section class="header-container">
+        <header class="header-container">
             <div class="dropdown-container">
                 <button class="profile-btn" id="dpBtn"><i class="fa-solid fa-user"></i></button>
                 <!-- Dropdown Menu -->
@@ -77,10 +256,108 @@
                     <a href="index.php">Logout</a>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <section class="notif-main-container">
-                <h1>Content</h1>
+        <section class="notif-main-ctn">
+            <div class="job-search-container">
+                <section class="notification-head">
+                    <h2>Notification</h2>
+                </section>
+                <section class="schedule-status-ctn">
+                    <article class="box-controller">
+                        <header class="content-header">
+                            <p class="status-message">Your Schedule is confirmed</p>
+                            <p class="time-style">Date: <time datetime="2025-05-13">13-05-2025</time></p>
+                        </header>
+                        <section class="content-style">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                            praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                        </p>
+                        </section>
+                    </article>
+    
+                    <!-- box 2-->
+                    <article class="box-controller">
+                        <header class="content-header">
+                            <p class="status-message">Your Schedule is confirmed</p>
+                            <p class="time-style">Date: <time datetime="2025-05-13">13-05-2025</time></p>
+                        </header>
+                        <section class="content-style">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                            praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                        </p>
+                        </section>
+                    </article>
+    
+                    <!-- box 3-->
+                    <article class="box-controller">
+                        <header class="content-header">
+                            <p class="status-message">Your Schedule is confirmed</p>
+                            <p class="time-style">Date: <time datetime="2025-05-13">13-05-2025</time></p>
+                        </header>
+                        <section class="content-style">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                            praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                        </p>
+                        </section>
+                    </article>
+    
+                    <!-- box 4-->
+                    <article class="box-controller">
+                        <header class="content-header">
+                            <p class="status-message">Your Schedule is confirmed</p>
+                            <p class="time-style">Date: <time datetime="2025-05-13">13-05-2025</time></p>
+                        </header>
+                        <section class="content-style">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deleniti quibusdam vel nesciunt, 
+                            praesentium vitae officiis nostrum quod vero quas, quo corporis atque distinctio nam iure labore, nulla reiciendis! Cum!
+                        </p>
+                        </section>
+                    </article>
+                </section>
+            </div>
+            <div class="currency-date-aside">
+                <aside class="applicant-container">
+                    <div class="aside-header">
+                      <h2>Schedule</h2>
+                    </div>
+                  
+                    <section class="applicant-list">
+
+                        <!-- Applicants card -->
+                        <div class="applicant-card" >
+                            <div class="name-time">
+                                <p class="instrument-type">Drums <i class="fa-solid fa-drum"></i></p>
+                                <p class="instructor-name">Daniel Pagcaliwangan</p>
+                            </div>
+                            <span><p class="time">August 26, 2025</p></span>
+                        </div>
+
+                            <!-- Applicants card-->
+                        <div class="applicant-card">
+                            <div class="name-time">
+                                <p class="instrument-type">Drums <i class="fa-solid fa-drum"></i></p>
+                                <p class="instructor-name">Daniel pagcaliwangan</p>
+                            </div>
+                            <span><p class="time">August 26, 2025</p></span>
+                        </div>
+
+                            <!-- Applicants card-->
+                        <div class="applicant-card">
+                            <div class="name-time">
+                                <p class="instrument-type">Drums <i class="fa-solid fa-drum"></i></p>
+                                <p class="instructor-name">Daniel Pagcaliwangan</p>
+                            </div>
+                            <span><p class="time">August 26, 2025</p></span>
+                        </div>
+
+                    </section>
+                </aside>
+            </div>
         </section>
 
     </main>

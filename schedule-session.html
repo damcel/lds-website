@@ -34,29 +34,48 @@
 }
 
 .extend-session-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+    width: 30%;
   cursor: pointer;
-  background-color: #f0f0f0;
+  background-color: #1266dc;
   border: 1px solid #ccc;
-  padding: 6px 12px;
+  padding: 6px 8px;
   border-radius: 4px;
-  font: inherit;
   transition: background-color 0.2s ease;
 }
 
 .extend-session-btn:hover {
-  background-color: #e0e0e0;
+  background-color: #6b4545;
+  color: black;
 }
 
-.extend-session-btn i {
-  color: #4428ce;
-}
 
 .extend-session-btn span {
   font-size: 14px;
-  color: #333;
+  color: #e5e0e0;
+}
+
+.check-box {
+  width: 28px;          /* fixed width */
+  height: 28px;         /* fixed height */
+  padding: 0;           /* remove padding to keep size consistent */
+  background: #fff;
+  border: 2px solid #dfdcdb;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;      /* bigger for the checkmark */
+  display: flex;        /* center the checkmark */
+  align-items: center;
+  justify-content: center;
+}
+
+.check-box p {
+  margin: 0;
+  display: none;        /* hide checkmark by default */
+}
+
+.time-month-ctn.selected .check-box p {
+  display: block;       /* show checkmark only when selected */
 }
 
 
@@ -105,7 +124,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="practice-schedule.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-calendar-check"></i><span>Practice Schedule</span>
                     </a>
@@ -194,95 +213,76 @@
                             </div>
                         </div>
             
-                        <div class="time-ctn">
-                            <div class="start-end">
-                                <div class="session-ctn">
-                                    <div class="custom-select-wrapper">
-                                      <span>Time Start</span>
-                                      <div class="custom-select-time">Session Start</div>
-                                      <div class="custom-options">
-                                        <div class="custom-option selected">7:00 AM</div>
-                                        <div class="custom-option">10:00 AM</div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="session-ctn">
-                                    <div class="custom-select-wrapper">
-                                      <span>Session End</span>
-                                      <div class="custom-select-time">Session End</div>
-                                      <div class="custom-options">
-                                        <div class="custom-option selected">7:00 PM</div>
-                                        <div class="custom-option">10:00 PM</div>
-                                      </div>
-                                      <!-- HERE -->
-                                      <div class="extend-session-container">
-                                        <button id="extend-session" class="extend-session-btn">
-                                          <i class="fas fa-plus"></i>
-                                          <span>Extend Session</span>
-                                        </button>
-                                      </div>
-                                      
-                                        
-                                        <!-- Placeholder for extended time -->
-                                        <div class="custom-select-wrapper extended-session" style="display:none; margin-top: 10px;">
-                                            <div class="custom-select-time">Extend End</div>
-                                            <div class="custom-options">
-                                            <div class="custom-option">8:00 PM</div>
-                                            <div class="custom-option">9:00 PM</div>
-                                            <div class="custom-option">10:00 PM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         
-                            <div class="time-month-ctn">
+                        <section class="time-ctn">
+                            <h4>Available Time</h4>
+                        
+                            <!-- 7:00 AM to 8:00 AM -->
+                            <div class="time-month-ctn" data-start="7:00" data-end="8:00">
                                 <div class="time-box">
                                     <div class="time-block am">
-                                    <h3>7</h3>
-                                    <div class="am-style">
-                                        <p>AM</p>
+                                        <h3>7:00</h3>
+                                        <div class="am-style"><p>AM</p></div>
                                     </div>
-                                    </div>
-            
                                     <div class="colon">:</div>
-            
                                     <div class="time-block pm">
-                                    <h3>10</h3>
-                                    <div class="pm-style">
-                                        <p>PM</p>
-                                    </div>
+                                        <h3>8:00</h3>
+                                        <div class="pm-style"><p>AM</p></div>
                                     </div>
                                 </div>
-                                <div class="date-box">
-                                    <div class="month">
-                                        <p>MAY</p>
-                                    </div>
-                                    <div class="date">
-                                        <p>17</p>
-                                    </div>
-                                </div>
+                                <div class="check-box"><p></p></div>
                             </div>
-                            <div class="clock" id="round-clock">
-                                <div class="hour"></div>
-                                <div class="circle red">0</div>
-                                <div class="circle purple">7</div>
-                                <!-- Clock numbers 1 to 12 -->
-                                <div class="clock-number" data-hour="1"></div>
-                                <div class="clock-number" data-hour="2"></div>
-                                <div class="clock-number" data-hour="3"></div>
-                                <div class="clock-number" data-hour="4"></div>
-                                <div class="clock-number" data-hour="5"></div>
-                                <div class="clock-number" data-hour="6"></div>
-                                <div class="clock-number" data-hour="7"></div>
-                                <div class="clock-number" data-hour="8"></div>
-                                <div class="clock-number" data-hour="9"></div>
-                                <div class="clock-number" data-hour="10"></div>
-                                <div class="clock-number" data-hour="11"></div>
-                                <div class="clock-number" data-hour="12"></div>
-                            </div>                  
-                        </div>
+
+                            <div class="time-month-ctn" data-start="8:30" data-end="9:30">
+                                <div class="time-box">
+                                    <div class="time-block am">
+                                        <h3>8:30</h3>
+                                        <div class="am-style"><p>AM</p></div>
+                                    </div>
+                                    <div class="colon">:</div>
+                                    <div class="time-block pm">
+                                        <h3>9:30</h3>
+                                        <div class="pm-style"><p>AM</p></div>
+                                    </div>
+                                </div>
+                                <div class="check-box"><p></p></div>
+                            </div>
+
+                            <div class="time-month-ctn" data-start="8:00" data-end="9:00">
+                                <div class="time-box">
+                                    <div class="time-block am">
+                                        <h3>8:00</h3>
+                                        <div class="am-style"><p>AM</p></div>
+                                    </div>
+                                    <div class="colon">:</div>
+                                    <div class="time-block pm">
+                                        <h3>9:00</h3>
+                                        <div class="pm-style"><p>AM</p></div>
+                                    </div>
+                                </div>
+                                <div class="check-box"><p></p></div>
+                            </div>
+
+                            <div class="time-month-ctn" data-start="9:30" data-end="10:30">
+                                <div class="time-box">
+                                    <div class="time-block am">
+                                        <h3>9:30</h3>
+                                        <div class="am-style"><p>AM</p></div>
+                                    </div>
+                                    <div class="colon">:</div>
+                                    <div class="time-block pm">
+                                        <h3>10:30</h3>
+                                        <div class="pm-style"><p>AM</p></div>
+                                    </div>
+                                </div>
+                                <div class="check-box"><p></p></div>
+                            </div>
+
+                        </section>
                     </div>
+                    <button type="submit" class="extend-session-btn">
+                        <span>Submit Booking</span>
+                    </button>
                 </div>
               </section>
         </section>
@@ -290,37 +290,87 @@
     </main>
 
     <script src="script/drop-down.js"></script>
-  <script src="script/date-instructor-instrument.js"></script>
-  <script src="script/time-month.js"></script>
+    <script src="script/date-instructor-instrument.js"></script>
+    <!-- <script src="script/time-month.js"></script> -->
     <script src="script/sidenav.js"></script>
-    <script src="script/profile-dropdown-menu.js"></script>  
-    <script>
-        const extendBtn = document.getElementById('extend-session');
-        const extendedWrapper = document.querySelector('.extended-session');
-        const extendedSelect = extendedWrapper.querySelector('.custom-select-time');
-        const extendedOptions = extendedWrapper.querySelector('.custom-options');
-      
-        // Show the extended session dropdown and hide the button
-        extendBtn.addEventListener('click', () => {
-          extendedWrapper.style.display = 'block';
-          extendBtn.style.display = 'none'; // Hide the "+ Extend Session" button
+      <script src="script/profile-dropdown-menu.js"></script>  
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const blocks = document.querySelectorAll(".time-month-ctn");
+            let selectedBlocks = [];
+        
+            function timeToMinutes(timeStr) {
+                const parts = timeStr.trim().split(":");
+                const hour = parseInt(parts[0], 10);
+                const min = parseInt(parts[1] || "0", 10);
+                return hour * 60 + min;
+            }
+        
+            function clearAllSelections() {
+                selectedBlocks = [];
+                blocks.forEach(block => {
+                    block.classList.remove("selected");
+                    block.querySelector(".check-box p").innerHTML = "";
+                    block.style.display = "flex";
+                });
+            }
+        
+            function showOnlyNextBlock(lastEndMin) {
+                let nextShown = false;
+        
+                blocks.forEach(block => {
+                    const blockStartMin = timeToMinutes(block.dataset.start);
+                    if (
+                        block.classList.contains("selected") ||
+                        (!nextShown && blockStartMin === lastEndMin)
+                    ) {
+                        block.style.display = "flex";
+                        if (blockStartMin === lastEndMin) {
+                            nextShown = true;
+                        }
+                    } else {
+                        block.style.display = "none";
+                    }
+                });
+            }
+        
+            function toggleBlockSelection(block) {
+                const blockStartMin = timeToMinutes(block.dataset.start);
+                const blockEndMin = timeToMinutes(block.dataset.end);
+        
+                // Reset if already selected
+                if (block.classList.contains("selected")) {
+                    clearAllSelections();
+                    return;
+                }
+        
+                if (selectedBlocks.length === 0) {
+                    selectedBlocks.push(block);
+                    block.classList.add("selected");
+                    block.querySelector(".check-box p").innerHTML = '<i class="fa-solid fa-check"></i>';
+                    showOnlyNextBlock(blockEndMin);
+                } else {
+                    const lastBlock = selectedBlocks[selectedBlocks.length - 1];
+                    const lastEndMin = timeToMinutes(lastBlock.dataset.end);
+        
+                    if (blockStartMin === lastEndMin) {
+                        selectedBlocks.push(block);
+                        block.classList.add("selected");
+                        block.querySelector(".check-box p").innerHTML = '<i class="fa-solid fa-check"></i>';
+                        showOnlyNextBlock(blockEndMin);
+                    } else {
+                        alert("You can only extend to the next consecutive time slot.");
+                    }
+                }
+            }
+        
+            blocks.forEach(block => {
+                block.addEventListener("click", () => {
+                    toggleBlockSelection(block);
+                });
+            });
         });
-      
-        // Toggle the dropdown options
-        extendedSelect.addEventListener('click', () => {
-          extendedOptions.style.display =
-            extendedOptions.style.display === 'block' ? 'none' : 'block';
-        });
-      
-        // Handle option selection
-        extendedOptions.querySelectorAll('.custom-option').forEach(option => {
-          option.addEventListener('click', () => {
-            extendedSelect.textContent = option.textContent;
-            extendedOptions.style.display = 'none';
-          });
-        });
-      </script>
-           
-       
+        </script>
+        
 </body>
 </html>
