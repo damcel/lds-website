@@ -5,51 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
-    <title>Message</title>
+    <title>Schedule</title>
     <style>
-        .inbox-list {
-            width: 100%;
-            font-family: sans-serif;
-        }
+            table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .inbox-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 16px;
-            background-color: #f3f6fb;
-            border-bottom: 1px solid #d3dce6;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
 
-        .inbox-row:hover {
-            background-color: #e1ebf5;
-        }
+    thead {
+      background-color: #dc3545; /* Red */
+      color: white;
+    }
 
-        .inbox-row.selected {
-            background-color: #ffffff !important;
-        }
+    tbody tr:hover {
+      background-color: #f9d6d5; /* Light red tint for hover */
+    }
 
-        .inbox-sender {
-            width: 20%;
-            font-weight: 600;
-        }
-
-        .inbox-subject {
-            width: 65%;
-            padding: 0 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .inbox-date {
-            width: 15%;
-            text-align: right;
-            color: #555;
-            font-size: 0.9em;
-        }
+    td i {
+      margin-left: 5px;
+      color: #dc3545; /* Red icon */
+    }
     </style>
 </head>
 <body>
@@ -78,11 +61,13 @@
                 <ul class="ul-links">
                   <li>
                     <a href="index.html">
+                      <!-- SVG Icon -->
                       <i class="fa-regular fa-bell"></i><span>Notification</span>
                     </a>
                   </li>
                   <li>
                     <a href="inbox.html">
+                      <!-- SVG Icon -->
                       <i class="fa-regular fa-message"></i><span>Message</span>
                     </a>
                   </li>
@@ -100,11 +85,13 @@
                   </li>
                   <li>
                     <a href="session-log.html">
+                      <!-- SVG Icon -->
                       <i class="fa-solid fa-chalkboard-user"></i><span>Session Log</span>
                     </a>
                   </li>
                   <li>
                     <a href="student-payment.html">
+                      <!-- SVG Icon -->
                       <i class="fa-regular fa-credit-card"></i><span>Payments</span>
                     </a>
                   </li>
@@ -117,6 +104,7 @@
         <header class="header-container">
             <div class="dropdown-container">
                 <button class="profile-btn" id="dpBtn"><i class="fa-solid fa-user"></i></button>
+                <!-- Dropdown Menu -->
                 <div class="dropdown" id="dropdownMenu">
                     <a href="#" class="prfl">Profile Settings</a>
                     <a href="index.php">Logout</a>
@@ -129,60 +117,58 @@
                 <div class="tabs-ctn">
                     <nav class="tabs">
                         <ul>
-                            <li class="tab active"><a href="inbox.html">Inbox</a></li>
-                            <li class="tab"><a href="assignment-page.html">Sent Message</a></li>
-                            <li class="tab"><a href="assignment-page.html">Send Message</a></li>
+                            <li class="tab"><a href="session-log.html">Session Log</a></li>
+                            <li class="tab active"><a href="paid-sessions.html">Sessions</a></li>
+                            <li class="tab"><a href="assignment-page.html">Assignment Log</a></li>
                         </ul>
                     </nav>
                 </div>
             </section>
             <section class="schedule-list-ctn">
-              <div class="inbox-list">
-                <div class="inbox-row" data-id="1" onclick="handleRowClick(this)">
-                  <div class="inbox-sender">Acme Inc.</div>
-                  <div class="inbox-subject">Insights: The latest in industrial equipment and tools</div>
-                  <div class="inbox-date">Feb, 26</div>
-                </div>
-                <div class="inbox-row" data-id="2" onclick="handleRowClick(this)">
-                  <div class="inbox-sender">Travel Tales</div>
-                  <div class="inbox-subject">Our latest Adventures and Destinations</div>
-                  <div class="inbox-date">March, 26</div>
-                </div>
-                <div class="inbox-row" data-id="3" onclick="handleRowClick(this)">
-                  <div class="inbox-sender">Daniel Pagcaliwangan</div>
-                  <div class="inbox-subject">Learn about important safety tips before you fly!</div>
-                  <div class="inbox-date">Jan, 26</div>
-                </div>
-                <div class="inbox-row" data-id="4" onclick="handleRowClick(this)">
-                  <div class="inbox-sender">Luis Belga</div>
-                  <div class="inbox-subject">Insights: Industry trends and best practices</div>
-                  <div class="inbox-date">Jan, 26</div>
-                </div>
-                <div class="inbox-row" data-id="5" onclick="handleRowClick(this)">
-                  <div class="inbox-sender">Jane Doe</div>
-                  <div class="inbox-subject">Our Complete list of Recipe Ideas and Restaurant Reviews!</div>
-                  <div class="inbox-date">Jan, 26</div>
-                </div>
-                <div class="inbox-row" data-id="6" onclick="handleRowClick(this)">
-                  <div class="inbox-sender">Company Name</div>
-                  <div class="inbox-subject">Lorem ipsum dolor sit amet consectetur. Ac eget eu eget ullamcorper tellus sem scelerisque sit ante.</div>
-                  <div class="inbox-date">Jan, 26</div>
-                </div>
-              </div>                             
+                <section class="lesson-grid">
+                    <article class="lesson-card">
+                        <table>
+                            <thead>
+                              <tr>
+                                <th>Session Number</th>
+                                <th>Status</th>
+                                <th>Payment Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Paid</td>
+                                <td>2025-06-01</td>
+                              </tr>
+                              <tr>
+                                <td>1</td>
+                                <td>Paid</td>
+                                <td>2025-06-01</td>
+                              </tr>
+                              <tr>
+                                <td>1</td>
+                                <td>Paid</td>
+                                <td>2025-06-01</td>
+                              </tr>
+                              <tr>
+                                <td>1</td>
+                                <td>Paid</td>
+                                <td>2025-06-01</td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>                        
+                    </article>
+                  
+                  </section>                  
             </section>
         </section>
+
     </main>
 
+    
     <script src="script/sidenav.js"></script>
-    <script src="script/profile-dropdown-menu.js"></script>
-
-    <!-- ✅ JavaScript for redirecting on row click -->
-    <script>
-      function handleRowClick(row) {
-        const rowId = row.getAttribute('data-id');
-        localStorage.setItem('selectedInboxId', rowId);
-        window.location.href = "message-details.html";
-      }
-    </script>
+    <script src="script/profile-dropdown-menu.js"></script>     
 </body>
 </html>

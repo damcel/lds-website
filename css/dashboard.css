@@ -511,12 +511,31 @@ body{
 }
 
 .edit-btn {
-  background-color: #007bff;
-  color: white;
+  background-color: #d8dfe7;
+  color: rgb(113, 110, 110);
   border: none;
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.resched-btn{
+  background-color: #c86b19;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-btn:hover{
+  background-color: #4A4A4A;
+  color: #FEFEFE;
+}
+
+.resched-btn:hover{
+  background-color: #e6aa29;
+  color: #0e0e0e;
 }
 
 .lesson-dates {

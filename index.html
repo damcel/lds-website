@@ -92,7 +92,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   padding: 5px;
-  border-bottom: 1px solid #aeadad;
+  border-bottom: 1px solid #cecbcb;
   }
 
   .applicant-card:hover {
@@ -171,6 +171,19 @@
     text-decoration: underline;
   }
 
+  .instructor-name{
+    font-size: 15px;
+    font-weight: 500;
+    color: #888;
+  }
+
+  .instrument-type{
+    font-weight: 600;
+  color: #0A1B39;
+  margin: 0;
+  font-size: 18px;
+  }
+
     </style>
 </head>
 <body>
@@ -198,7 +211,7 @@
                 </div>
                 <ul class="ul-links">
                   <li>
-                    <a href="student-dashboard.html">
+                    <a href="index.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-bell"></i><span>Notification</span>
                     </a>
@@ -209,11 +222,16 @@
                       <i class="fa-regular fa-message"></i><span>Message</span>
                     </a>
                   </li>
-                  
                   <li>
                     <a href="schedule.html">
                       <!-- SVG Icon -->
-                      <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                      <i class="fa-regular fa-calendar-check"></i><span>Lesson Schedule</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-calendar-check"></i><span>Practice Schedule</span>
                     </a>
                   </li>
                   <li>
@@ -223,7 +241,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="student-payment.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-credit-card"></i><span>Payments</span>
                     </a>
@@ -310,60 +328,74 @@
             <div class="currency-date-aside">
                 <aside class="applicant-container">
                     <div class="aside-header">
-                      <h2>Instructor</h2>
-                      <span class="position-title">Assignment</span>
+                      <h2>Schedule</h2>
                     </div>
                   
                     <section class="applicant-list">
 
                         <!-- Applicants card -->
-                        <div class="applicant-card" data-bs-toggle="modal" data-bs-target="#applicantModal">
-                            <div class="info">
-                            <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Avatar">
+                        <div class="applicant-card" >
                             <div class="name-time">
-                                <p class="name">Instructor</p>
-                                <p class="time">Yesterday, 14:36</p>
+                                <p class="instrument-type">Drums <i class="fa-solid fa-drum"></i></p>
+                                <p class="instructor-name">Daniel Pagcaliwangan</p>
                             </div>
+                            <span><p class="time">August 26, 2025</p></span>
+                        </div>
+
+                            <!-- Applicants card-->
+                        <div class="applicant-card">
+                            <div class="name-time">
+                                <p class="instrument-type">Drums <i class="fa-solid fa-drum"></i></p>
+                                <p class="instructor-name">Daniel pagcaliwangan</p>
+                            </div>
+                            <span><p class="time">August 26, 2025</p></span>
+                        </div>
+
+                            <!-- Applicants card-->
+                        <div class="applicant-card">
+                            <div class="name-time">
+                                <p class="instrument-type">Drums <i class="fa-solid fa-drum"></i></p>
+                                <p class="instructor-name">Daniel Pagcaliwangan</p>
+                            </div>
+                            <span><p class="time">August 26, 2025</p></span>
+                        </div>
+
+                    </section>
+                </aside>
+
+                <aside class="applicant-container">
+                    <div class="aside-header">
+                      <h2>Assignment</h2>
+                    </div>
+                  
+                    <section class="applicant-list">
+
+                        <!-- Applicants card -->
+                        <div class="applicant-card" >
+                            <div class="name-time">
+                                <p class="name">Instructor <i class="fa-solid fa-chalkboard-user"></i></p>
+                                <p class="time">Yesterday, 14:36</p>
                             </div>
                             <span class="position-label">Instruction</span>
                         </div>
 
                             <!-- Applicants card-->
                         <div class="applicant-card">
-                            <div class="info">
-                            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Avatar">
                             <div class="name-time">
-                                <p class="name">Instructor</p>
+                                <p class="name">Instructor <i class="fa-solid fa-chalkboard-user"></i></p>
                                 <p class="time">Today, 08:49</p>
-                            </div>
                             </div>
                             <span class="position-label">instruction</span>
                         </div>
 
                             <!-- Applicants card-->
                         <div class="applicant-card">
-                            <div class="info">
-                            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Avatar">
                             <div class="name-time">
-                                <p class="name">Instructor</p>
+                                <p class="name">Instructor <i class="fa-solid fa-chalkboard-user"></i></p>
                                 <p class="time">Yesterday, 14:36</p>
-                            </div>
                             </div>
                             <span class="position-label">instruction</span>
                         </div>
-
-                          <!-- Applicants card-->
-                        <div class="applicant-card">
-                            <div class="info">
-                            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Avatar">
-                            <div class="name-time">
-                                <p class="name">Instructor</p>
-                                <p class="time">Yesterday, 14:36</p>
-                            </div>
-                            </div>
-                            <span class="position-label">instruction</span>
-                        </div>
-
                     </section>
                 </aside>
             </div>

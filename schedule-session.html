@@ -7,32 +7,59 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <title>Book Session</title>
     <style>
-            table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+            .custom-options {
+  display: none;
+  border: 1px solid #ccc;
+  background: white;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+}
 
-    th, td {
-      padding: 12px 16px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
+.custom-option {
+  padding: 8px;
+  cursor: pointer;
+}
 
-    thead {
-      background-color: #dc3545; /* Red */
-      color: white;
-    }
+.custom-option:hover {
+  background-color: #f0f0f0;
+}
 
-    tbody tr:hover {
-      background-color: #f9d6d5; /* Light red tint for hover */
-    }
+.extend-session-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns the button to the right */
+  margin-top: 8px;
+}
 
-    td i {
-      margin-left: 5px;
-      color: #dc3545; /* Red icon */
-    }
+.extend-session-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.extend-session-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.extend-session-btn i {
+  color: #4428ce;
+}
+
+.extend-session-btn span {
+  font-size: 14px;
+  color: #333;
+}
+
+
     </style>
 </head>
 <body>
@@ -60,7 +87,7 @@
                 </div>
                 <ul class="ul-links">
                   <li>
-                    <a href="student-dashboard.html">
+                    <a href="index.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-bell"></i><span>Notification</span>
                     </a>
@@ -71,11 +98,16 @@
                       <i class="fa-regular fa-message"></i><span>Message</span>
                     </a>
                   </li>
-                  
                   <li>
                     <a href="schedule.html">
                       <!-- SVG Icon -->
-                      <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                      <i class="fa-regular fa-calendar-check"></i><span>Lesson Schedule</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <!-- SVG Icon -->
+                      <i class="fa-regular fa-calendar-check"></i><span>Practice Schedule</span>
                     </a>
                   </li>
                   <li>
@@ -85,7 +117,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="student-payment.html">
                       <!-- SVG Icon -->
                       <i class="fa-regular fa-credit-card"></i><span>Payments</span>
                     </a>
@@ -166,6 +198,7 @@
                             <div class="start-end">
                                 <div class="session-ctn">
                                     <div class="custom-select-wrapper">
+                                      <span>Time Start</span>
                                       <div class="custom-select-time">Session Start</div>
                                       <div class="custom-options">
                                         <div class="custom-option selected">7:00 AM</div>
@@ -175,11 +208,30 @@
                                   </div>
                                   <div class="session-ctn">
                                     <div class="custom-select-wrapper">
+                                      <span>Session End</span>
                                       <div class="custom-select-time">Session End</div>
                                       <div class="custom-options">
                                         <div class="custom-option selected">7:00 PM</div>
                                         <div class="custom-option">10:00 PM</div>
                                       </div>
+                                      <!-- HERE -->
+                                      <div class="extend-session-container">
+                                        <button id="extend-session" class="extend-session-btn">
+                                          <i class="fas fa-plus"></i>
+                                          <span>Extend Session</span>
+                                        </button>
+                                      </div>
+                                      
+                                        
+                                        <!-- Placeholder for extended time -->
+                                        <div class="custom-select-wrapper extended-session" style="display:none; margin-top: 10px;">
+                                            <div class="custom-select-time">Extend End</div>
+                                            <div class="custom-options">
+                                            <div class="custom-option">8:00 PM</div>
+                                            <div class="custom-option">9:00 PM</div>
+                                            <div class="custom-option">10:00 PM</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -241,6 +293,34 @@
   <script src="script/date-instructor-instrument.js"></script>
   <script src="script/time-month.js"></script>
     <script src="script/sidenav.js"></script>
-    <script src="script/profile-dropdown-menu.js"></script>     
+    <script src="script/profile-dropdown-menu.js"></script>  
+    <script>
+        const extendBtn = document.getElementById('extend-session');
+        const extendedWrapper = document.querySelector('.extended-session');
+        const extendedSelect = extendedWrapper.querySelector('.custom-select-time');
+        const extendedOptions = extendedWrapper.querySelector('.custom-options');
+      
+        // Show the extended session dropdown and hide the button
+        extendBtn.addEventListener('click', () => {
+          extendedWrapper.style.display = 'block';
+          extendBtn.style.display = 'none'; // Hide the "+ Extend Session" button
+        });
+      
+        // Toggle the dropdown options
+        extendedSelect.addEventListener('click', () => {
+          extendedOptions.style.display =
+            extendedOptions.style.display === 'block' ? 'none' : 'block';
+        });
+      
+        // Handle option selection
+        extendedOptions.querySelectorAll('.custom-option').forEach(option => {
+          option.addEventListener('click', () => {
+            extendedSelect.textContent = option.textContent;
+            extendedOptions.style.display = 'none';
+          });
+        });
+      </script>
+           
+       
 </body>
 </html>
