@@ -105,7 +105,6 @@
     }
 
     .calendar-grid .today {
-      border: 2px solid #facc15;
       font-weight: bold;
     }
 
@@ -126,7 +125,8 @@
 
     .session-box {
   display: none; /* Hide session boxes initially */
-  background: #d1d1d1;
+  border: 1px solid rgb(195, 192, 192);
+  background-color: #f5f2f2;
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 12px;
@@ -189,6 +189,58 @@
     gap: 10px;
     flex-direction: column;
   }
+
+  .date.today {
+  background-color: orange;
+  color: white;
+  border-radius: 50%;
+}
+
+.date.active:not(.today) {
+  background-color: rgb(255, 102, 0);
+  color: white;
+  border-radius: 50%;
+}
+
+.past-date {
+  color: #ccc;
+  pointer-events: none;
+}
+
+/* Basic modern dropdown styling */
+select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1.5px solid #888;
+  background-color: white;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+  min-width: 150px;
+}
+
+select:focus {
+  outline: none;
+  border-color: #005fcc;
+  box-shadow: 0 0 6px rgba(0, 95, 204, 0.6);
+}
+
+option:disabled {
+  color: #999;
+  background-color: #f0f0f0;
+}
+
+.month-list{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.head-ctn{
+    display: flex;
+    justify-content: space-between;
+}
     </style>
 </head>
 <body>
@@ -235,13 +287,13 @@
                       </a>
                     </li>
                     <li>
-                      <a href="teacher-assignment.html">
+                      <a href="teacher-assignment-log.html">
                         <!-- SVG Icon -->
                         <i class="fa-regular fa-clipboard"></i><span>Student Assignment Log</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="teacher-payslip.html">
                         <!-- SVG Icon -->
                         <i class="fa-regular fa-credit-card"></i><span>Pay Slip</span>
                       </a>
@@ -261,283 +313,117 @@
                 </div>
             </div>
         </header>
-        <section class="calendar-schedule-container">
-            <!-- Calendar Panel -->
-            <div class="calendar-box">
-                <div class="dropdown">
-                <input type="text" placeholder="Search Student" />
-                </div>
         
-                <div class="calendar-nav">
-                <button onclick="changeMonth(-1)"></button>
-                <div>
-                    <select id="month-select" onchange="updateCalendar()"></select>
-                    <select id="year-select" onchange="updateCalendar()"></select>
+        <section class="schedule-main-ctn">
+            <section class="calendar-schedule-container">
+                <!-- Calendar Panel -->
+                <div class="calendar-box">
+                    <div class="dropdown">
+                    <input type="text" placeholder="Search Student" />
+                    </div>
+            
+                    <div class="calendar-nav">
+                    <button onclick="changeMonth(-1)"></button>
+                    <div class="month-list">
+                        <select id="month-select" onchange="updateCalendar()"></select>
+                        <select id="year-select" onchange="updateCalendar()"></select>
+                    </div>
+                    <button onclick="changeMonth(1)"></button>
+                    </div>
+            
+                    <div class="calendar-grid" id="calendar-days">
+                    <div class="day">Mo</div>
+                    <div class="day">Tu</div>
+                    <div class="day">We</div>
+                    <div class="day">Th</div>
+                    <div class="day">Fr</div>
+                    <div class="day">Sa</div>
+                    <div class="day">Su</div>
+                    <!-- Dates will be injected here -->
+                    </div>
                 </div>
-                <button onclick="changeMonth(1)"></button>
+            
+                <!-- Available Time Panel (initially hidden) -->
+                <div class="available-time" id="assignment-panel">
+                    <h2>Assignment</h2>
+                    <div class="session-box" data-date="2025-05-22">
+                        <div class="head-ctn">
+                            <div>
+                                <h3 class="lesson-title">Drum Lesson <i class="fa-solid fa-drum"></i></h3>
+                                <h3>Session #</h3>
+                                <span id="selected-date-label"></span>
+                            </div>
+
+                            <div>
+                                <button class="resched-btn">Reschedule</button>
+                                <button class="edit-btn">Cancel</button>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium fugit cupiditate natus, ullam consectetur repudiandae dolor facilis necessitatibus in suscipit itaque illum impedit architecto esse ad autem nisi tempora porro!
+                        </p>
+                    </div>
+                    <div class="session-box" data-date="2025-05-29">
+                        <div class="head-ctn">
+                            <div>
+                                <h3 class="lesson-title">Drum Lesson <i class="fa-solid fa-drum"></i></h3>
+                                <h3>Session #</h3>
+                                <span id="selected-date-label"></span>
+                            </div>
+
+                            <div>
+                                <button class="resched-btn">Reschedule</button>
+                                <button class="edit-btn">Cancel</button>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium fugit cupiditate natus, ullam consectetur repudiandae dolor facilis necessitatibus in suscipit itaque illum impedit architecto esse ad autem nisi tempora porro!
+                        </p>
+                    </div>
+
+                    <div class="session-box" data-date="2025-05-23">
+                        <div class="head-ctn">
+                            <div>
+                                <h3 class="lesson-title">Drum Lesson <i class="fa-solid fa-drum"></i></h3>
+                                <h3>Session #</h3>
+                                <span id="selected-date-label"></span>
+                            </div>
+
+                            <div>
+                                <button class="resched-btn">Reschedule</button>
+                                <button class="edit-btn">Cancel</button>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing ilis necessitatibus in suscipit itaque illum impedit architecto esse ad autem nisi tempora porro!
+                        </p>
+                    </div>
+
+                    <div class="session-box" data-date="2025-05-24">
+                        <div class="head-ctn">
+                            <div>
+                                <h3 class="lesson-title">Drum Lesson <i class="fa-solid fa-drum"></i></h3>
+                                <h3>Session #</h3>
+                                <span id="selected-date-label"></span>
+                            </div>
+
+                            <div>
+                                <button class="resched-btn">Reschedule</button>
+                                <button class="edit-btn">Cancel</button>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur,  necessitatibus in suscipit itaque illum impedit architecto esse ad autem nisi tempora porro!
+                        </p>
+                    </div>
                 </div>
-        
-                <div class="calendar-grid" id="calendar-days">
-                <div class="day">Mo</div>
-                <div class="day">Tu</div>
-                <div class="day">We</div>
-                <div class="day">Th</div>
-                <div class="day">Fr</div>
-                <div class="day">Sa</div>
-                <div class="day">Su</div>
-                <!-- Dates will be injected here -->
-                </div>
-            </div>
-        
-            <!-- Available Time Panel (initially hidden) -->
-            <div class="available-time" id="assignment-panel">
-              <h2>Assignment</h2>
-              <div class="session-box">
-                <span id="selected-date-label">session<br>1</span>
-                <div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut est porro rem quo eius corrupti, 
-                    quibusdam cupiditate ullam perspiciatis incidunt sapiente quia quidem accusamus, quisquam ipsum, atque officia quae illum?
-                  </p>
-                </div>
-              </div>
-              <div class="session-box">
-                <span id="selected-date-label">session<br>2</span>
-                <div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut est porro rem quo eius corrupti, 
-                    quibusdam cupiditate ullam perspiciatis incidunt sapiente quia quidem accusamus, quisquam ipsum, atque officia quae illum?
-                  </p>
-                </div>
-              </div>
-              <div class="session-box">
-                <span id="selected-date-label">session<br>3</span>
-                <div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut est porro rem quo eius corrupti, 
-                    quibusdam cupiditate ullam perspiciatis incidunt sapiente quia quidem accusamus, quisquam ipsum, atque officia quae illum?
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+            </section>
+        </section>
     </main>
 
     <script src="script/sidenav.js"></script>
     <script src="script/profile-dropdown-menu.js"></script>
-
-    <script>
-        const today = new Date();
-        let currentMonth = today.getMonth();
-        let currentYear = today.getFullYear();
-    
-        const monthSelect = document.getElementById("month-select");
-        const yearSelect = document.getElementById("year-select");
-        const calendarDays = document.getElementById("calendar-days");
-        const assignmentPanel = document.getElementById("assignment-panel");
-        const selectedDateLabel = document.getElementById("selected-date-label");
-    
-        const monthNames = [
-          "January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
-        ];
-    
-        // Fill dropdowns
-        monthNames.forEach((month, i) => {
-          const option = document.createElement("option");
-          option.value = i;
-          option.textContent = month;
-          monthSelect.appendChild(option);
-        });
-    
-        for (let y = currentYear - 5; y <= currentYear + 5; y++) {
-          const option = document.createElement("option");
-          option.value = y;
-          option.textContent = y;
-          yearSelect.appendChild(option);
-        }
-    
-        monthSelect.value = currentMonth;
-        yearSelect.value = currentYear;
-    
-        function updateCalendar() {
-          const year = parseInt(yearSelect.value);
-          const month = parseInt(monthSelect.value);
-    
-          const firstDay = new Date(year, month, 1);
-          const lastDay = new Date(year, month + 1, 0);
-          const startDayOfWeek = (firstDay.getDay() + 6) % 7;
-    
-          // Clear previous dates
-          [...calendarDays.querySelectorAll('.date')].forEach(el => el.remove());
-    
-          for (let i = 0; i < startDayOfWeek; i++) {
-            const empty = document.createElement("div");
-            calendarDays.appendChild(empty);
-          }
-    
-          for (let d = 1; d <= lastDay.getDate(); d++) {
-            const cell = document.createElement("div");
-            cell.className = "date";
-            cell.textContent = d;
-    
-            if (
-              d === today.getDate() &&
-              month === today.getMonth() &&
-              year === today.getFullYear()
-            ) {
-              cell.classList.add("today");
-            }
-    
-            cell.onclick = () => {
-            const dateText = `${monthNames[month]} ${d}, ${year}`;
-            selectedDateLabel.innerHTML = `session<br>${dateText}`;
-            
-            // Show all session boxes
-            document.querySelectorAll(".session-box").forEach(box => {
-                box.style.display = 'block';
-            });
-            };
-    
-            calendarDays.appendChild(cell);
-          }
-        }
-    
-        function changeMonth(offset) {
-          currentMonth += offset;
-          if (currentMonth < 0) {
-            currentMonth = 11;
-            currentYear--;
-          } else if (currentMonth > 11) {
-            currentMonth = 0;
-            currentYear++;
-          }
-          monthSelect.value = currentMonth;
-          yearSelect.value = currentYear;
-          updateCalendar();
-        }
-    
-        updateCalendar();
-      </script>
-
-<script>
-    (function() {
-      const students = [
-        "Alice Johnson",
-        "Bob Smith",
-        "Charlie Davis",
-        "Diana Prince",
-        "Ethan Hunt",
-        "Fiona Apple",
-        "George Clooney",
-        "Hannah Montana",
-        "Ian McKellen",
-        "Jane Austen"
-      ];
-  
-      const input = document.getElementById('student-combo');
-      const list = document.getElementById('student-options');
-      let filtered = [];
-      let highlightedIndex = -1;
-  
-      function renderList(items) {
-        list.innerHTML = '';
-        if (items.length === 0) {
-          const li = document.createElement('li');
-          li.textContent = 'No results found';
-          li.classList.add('no-results');
-          list.appendChild(li);
-          highlightedIndex = -1;
-          return;
-        }
-        items.forEach((item, idx) => {
-          const li = document.createElement('li');
-          li.textContent = item;
-          li.setAttribute('data-index', idx);
-          li.onclick = () => {
-            input.value = item;
-            hideList();
-          };
-          list.appendChild(li);
-        });
-        highlightedIndex = -1;
-      }
-  
-      function filterItems(query) {
-        filtered = students.filter(s => s.toLowerCase().includes(query.toLowerCase()));
-        renderList(filtered);
-        showList();
-      }
-  
-      function showList() {
-        list.style.display = 'block';
-      }
-      function hideList() {
-        list.style.display = 'none';
-        highlightedIndex = -1;
-      }
-  
-      input.addEventListener('input', e => {
-        const val = e.target.value;
-        if (!val) {
-          hideList();
-          return;
-        }
-        filterItems(val);
-      });
-  
-      input.addEventListener('keydown', e => {
-        if (list.style.display === 'none') return;
-        const items = list.querySelectorAll('li:not(.no-results)');
-        if (items.length === 0) return;
-  
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          if (highlightedIndex < items.length -1) {
-            highlightedIndex++;
-            updateHighlight(items);
-          }
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          if (highlightedIndex > 0) {
-            highlightedIndex--;
-            updateHighlight(items);
-          }
-        } else if (e.key === 'Enter') {
-          e.preventDefault();
-          if (highlightedIndex >= 0 && highlightedIndex < items.length) {
-            input.value = items[highlightedIndex].textContent;
-            hideList();
-          }
-        } else if (e.key === 'Escape') {
-          hideList();
-        }
-      });
-  
-      function updateHighlight(items) {
-        items.forEach(li => li.classList.remove('highlighted'));
-        if (highlightedIndex >= 0) {
-          items[highlightedIndex].classList.add('highlighted');
-          items[highlightedIndex].scrollIntoView({block: 'nearest'});
-        }
-      }
-  
-      document.addEventListener('click', e => {
-        if (!e.target.closest('.combo-box')) {
-          hideList();
-        }
-      });
-
-      input.addEventListener('focus', () => {
-        if (!input.value) {
-            filtered = students.slice();
-            renderList(filtered);
-            showList();
-        } else {
-            filterItems(input.value);
-        }
-        });
-    })();
-  </script>
+    <script src="script/teacher-calendar-setup.js"></script>
+    <script src="script/teacher-calendar-render.js"></script>
 </body>
 </html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Schedule</title>
+    <style>
+            table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #dc3545; /* Red */
+      color: white;
+    }
+
+    tbody tr:hover {
+      background-color: #f9d6d5; /* Light red tint for hover */
+    }
+
+    td i {
+      margin-left: 5px;
+      color: #dc3545; /* Red icon */
+    }
+
+    /* Make session number column narrow */
+th.session-number,
+td:first-child {
+  width: 100px;
+  text-align: center;
+}
+
+/* View button style */
+.view-btn {
+  background-color: #4428ce;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.view-btn i {
+    color: white;
+}
+
+.view-btn:hover {
+  background-color: #b9b6c8;
+}
+
+/* Modal overlay */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 10000;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Modal content styled like your email container */
+.modal-content.email-container {
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border: 1px solid #ddd;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+}
+
+/* Modal header */
+.email-header {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #202124;
+}
+
+/* Meta info */
+.email-meta {
+  font-size: 14px;
+  color: #5f6368;
+  margin-bottom: 24px;
+}
+
+/* Email body */
+.email-body {
+  font-size: 15px;
+  color: #202124;
+  line-height: 1.6;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: #5f6368;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #dc3545; /* red accent on hover */
+}
+
+/* Row hover and active styles */
+tbody tr {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover,
+tbody tr.active-row {
+  background-color: #f9d6d5;
+}
+
+.student-name{
+    width: 200px;
+}
+
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <a href="dashboardjobs.php" class="logo-link">
+                        <img src="logo/lds-logo.jpg" alt="lds-logo" id="sidebar-logo">
+                    </a>
+                </div>
+                <button onclick="toggleSidebar()" id="toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/>
+                    </svg>
+                </button>
+            </div>
+            <section class="li-styling">
+                <div class="user-name-container">
+                    <h3 class="user-name">Daniel Pagcaliwangan</h3>
+                    <h4 class="user-role">Instrument</h4>
+                    <div class="user-icon">
+                      <object type="image/svg+xml" data="/svg/drummer-svgrepo-com.svg" class="user-avatar-icon"></object>
+                    </div>
+                </div>
+                <ul class="ul-links">
+                    <li>
+                      <a href="teacher-dashboard.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-bell"></i><span>Notification</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="teacher-inbox.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-message"></i><span>Inbox</span>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="teacher-schedule.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="teacher-assignment-log.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-clipboard"></i><span>Student Assignment Log</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="teacher-payslip.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-credit-card"></i><span>Pay Slip</span>
+                      </a>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </aside>
+    
+    <main class="dashboard-container">
+        <header class="header-container">
+            <div class="dropdown-container">
+                <button class="profile-btn" id="dpBtn"><i class="fa-solid fa-user"></i></button>
+                <!-- Dropdown Menu -->
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="#" class="prfl">Profile Settings</a>
+                    <a href="index.php">Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="schedule-main-ctn">
+            <section class="schedule-list-ctn">
+                <section class="lesson-grid">
+                    <article class="lesson-card">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th class="student-name">Student Name</th>
+                              <th>Date</th>
+                              <th class="session-number">Session Number</th>
+                              <th>Instrument</th>
+                              <th>Amount</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- JavaScript will inject rows here -->
+                          </tbody>
+                        </table>                                              
+                      </article>                      
+                  </section>                  
+            </section>
+            <div id="pagination" style="margin-top: 20px; text-align: center;"></div>
+        </section>
+
+    </main>
+
+    <script src="script/sidenav.js"></script>
+    <script src="script/profile-dropdown-menu.js"></script>  
+    <script>
+        const scheduleData = [
+          { name: "Daniel Pagcaliwangan", date: "2025-06-01", session: 1, instrument: "Drum", amount: 600, status: "Paid" },
+          { name: "Ana Rivera", date: "2025-06-02", session: 2, instrument: "Piano", amount: 700, status: "Unpaid" },
+          { name: "Carlos Reyes", date: "2025-06-03", session: 3, instrument: "Violin", amount: 650, status: "Paid" },
+          { name: "Maria Cruz", date: "2025-06-04", session: 4, instrument: "Guitar", amount: 550, status: "Paid" },
+          { name: "Jose Santos", date: "2025-06-05", session: 5, instrument: "Flute", amount: 620, status: "Unpaid" },
+          { name: "Daniel Pagcaliwangan", date: "2025-06-06", session: 6, instrument: "Drum", amount: 600, status: "Paid" },
+          { name: "Ana Rivera", date: "2025-06-07", session: 7, instrument: "Piano", amount: 700, status: "Unpaid" },
+          { name: "Carlos Reyes", date: "2025-06-08", session: 8, instrument: "Violin", amount: 650, status: "Paid" },
+          { name: "Maria Cruz", date: "2025-06-09", session: 9, instrument: "Guitar", amount: 550, status: "Paid" },
+          { name: "Jose Santos", date: "2025-06-10", session: 10, instrument: "Flute", amount: 620, status: "Unpaid" }
+        ];
+      
+        const rowsPerPage = 7;
+        let currentPage = 1;
+        const tableBody = document.querySelector("tbody");
+        const paginationContainer = document.getElementById("pagination");
+      
+        function displayTablePage(page) {
+          tableBody.innerHTML = "";
+          const start = (page - 1) * rowsPerPage;
+          const end = start + rowsPerPage;
+          const pageData = scheduleData.slice(start, end);
+      
+          pageData.forEach(item => {
+            const row = `
+              <tr>
+                <td>${item.name}</td>
+                <td>${item.date}</td>
+                <td>${item.session}</td>
+                <td>${item.instrument} <i class="fa-solid fa-drum"></i></td>
+                <td>${item.amount}</td>
+                <td>${item.status}</td>
+              </tr>`;
+            tableBody.insertAdjacentHTML('beforeend', row);
+          });
+      
+          currentPage = page;
+          setupPagination(); // Refresh controls
+        }
+      
+        function setupPagination() {
+          const totalPages = Math.ceil(scheduleData.length / rowsPerPage);
+          paginationContainer.innerHTML = "";
+      
+          // ← Left Arrow
+          if (currentPage > 1) {
+            const leftArrow = document.createElement("button");
+            leftArrow.innerHTML = "&larr;";
+            styleBtn(leftArrow);
+            leftArrow.addEventListener("click", () => displayTablePage(currentPage - 1));
+            paginationContainer.appendChild(leftArrow);
+          }
+      
+          // Page Numbers
+          for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            styleBtn(btn);
+            if (i === currentPage) {
+              btn.style.backgroundColor = "#dc3545";
+              btn.style.color = "#fff";
+            }
+            btn.addEventListener("click", () => displayTablePage(i));
+            paginationContainer.appendChild(btn);
+          }
+      
+          // → Right Arrow
+          if (currentPage < totalPages) {
+            const rightArrow = document.createElement("button");
+            rightArrow.innerHTML = "&rarr;";
+            styleBtn(rightArrow);
+            rightArrow.addEventListener("click", () => displayTablePage(currentPage + 1));
+            paginationContainer.appendChild(rightArrow);
+          }
+        }
+      
+        function styleBtn(btn) {
+          btn.style.margin = "0 5px";
+          btn.style.padding = "6px 12px";
+          btn.style.cursor = "pointer";
+          btn.style.borderRadius = "5px";
+          btn.style.border = "1px solid #dc3545";
+          btn.style.backgroundColor = "#fff";
+          btn.style.transition = "background-color 0.2s";
+          btn.addEventListener("mouseover", () => btn.style.backgroundColor = "#f9d6d5");
+          btn.addEventListener("mouseout", () => {
+            if (!btn.textContent.includes(currentPage)) {
+              btn.style.backgroundColor = "#fff";
+              btn.style.color = "#000";
+            }
+          });
+        }
+      
+        // Init
+        window.addEventListener("DOMContentLoaded", () => {
+          displayTablePage(1);
+        });
+      </script>
+       
+      
+</body>
+</html>
