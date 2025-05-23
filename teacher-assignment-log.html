@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Message</title>
+    <style>
+.calendar-schedule-container {
+      display: flex;
+      gap: 24px;
+      padding: 16px;
+      font-family: sans-serif;
+    }
+
+    .available-time {
+      flex: 1;
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .available-time h2 {
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .session-box {
+  display: none; /* Hide session boxes initially */
+  background: #d1d1d1;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.combo-box {
+    position: relative;
+    width: 350px;
+  }
+  .combo-box label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+    color: #333;
+  }
+  .combo-box input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .combo-box input:focus {
+    border-color: #facc15;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.5);
+  }
+  .combo-box ul {
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: white;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    display: none;
+  }
+  .combo-box ul li {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  .combo-box ul li.highlighted,
+  .combo-box ul li:hover {
+    background-color: #facc15;
+  }
+  .combo-box ul li.no-results {
+    color: #999;
+    cursor: default;
+  }
+
+  .student-calendar{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #dc3545; /* Red */
+      color: white;
+    }
+
+    tbody tr:hover {
+      background-color: #f9d6d5; /* Light red tint for hover */
+      cursor: pointer;
+    }
+
+    td i {
+      margin-left: 5px;
+      color: #dc3545; /* Red icon */
+    }
+
+    /* Make session number column narrow */
+th.session-number,
+td:first-child {
+  width: 100px;
+  text-align: center;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.25s ease-in-out;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content input,
+.modal-content textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-content textarea {
+  transition: height 0.2s ease;
+  overflow-y: hidden;
+  resize: none; /* Optional: prevents manual resize handle */
+}
+
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn-save {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  background-color: #218838;
+}
+
+.btn-cancel:hover {
+  background-color: #c82333;
+}
+
+.session-info {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <a href="dashboardjobs.php" class="logo-link">
+                        <img src="logo/lds-logo.jpg" alt="lds-logo" id="sidebar-logo">
+                    </a>
+                </div>
+                <button onclick="toggleSidebar()" id="toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/>
+                    </svg>
+                </button>
+            </div>
+            <section class="li-styling">
+                <div class="user-name-container">
+                    <h3 class="user-name">Daniel Pagcaliwangan</h3>
+                    <h4 class="user-role">Instrument</h4>
+                    <div class="user-icon">
+                      <object type="image/svg+xml" data="/svg/drummer-svgrepo-com.svg" class="user-avatar-icon"></object>
+                    </div>
+                </div>
+                <ul class="ul-links">
+                    <li>
+                      <a href="teacher-dashboard.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-bell"></i><span>Notification</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="teacher-inbox.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-message"></i><span>Inbox</span>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="teacher-schedule.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-calendar-check"></i><span>Schedule</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="teacher-assignment-log.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-clipboard"></i><span>Student Assignment Log</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="teacher-payslip.html">
+                        <!-- SVG Icon -->
+                        <i class="fa-regular fa-credit-card"></i><span>Pay Slip</span>
+                      </a>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </aside>
+    
+    <main class="dashboard-container">
+        <header class="header-container">
+            <div class="dropdown-container">
+                <button class="profile-btn" id="dpBtn"><i class="fa-solid fa-user"></i></button>
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="#" class="prfl">Profile Settings</a>
+                    <a href="index.php">Logout</a>
+                </div>
+            </div>
+        </header>
+        <section class="schedule-main-ctn">
+            <section class="calendar-schedule-container">
+                <div class="combo-box">
+                    <label for="student-combo">Search or select student</label>
+                    <input type="text" id="student-combo" autocomplete="off" placeholder="Type or select student" />
+                    <ul id="student-options"></ul>
+                </div>
+        
+                <!-- Available Time Panel (initially hidden) -->
+                <div class="available-time" id="assignment-panel">
+                <h2>Student Name</h2>
+                <div class="session-box">
+                        <table>
+                        <thead>
+                            <tr>
+                            <th class="session-number">Session Number</th>   
+                            <th>Date</th>
+                            <th>Instrument</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>1</td>
+                            <td>2025-06-01</td>
+                            <td>Drum <i class="fa-solid fa-drum"></i></td>
+                            </tr>
+                            <tr>
+                            <td>1</td>
+                            <td>2025-06-01</td>
+                            <td>Drum <i class="fa-solid fa-drum"></i></td>
+                            </tr>
+                            <tr>
+                            <td>1</td>
+                            <td>2025-06-01</td>
+                            <td>Drum <i class="fa-solid fa-drum"></i></td>
+                            </tr>
+                            <tr>
+                            <td>1</td>
+                            <td>2025-06-01</td>
+                            <td>Drum <i class="fa-solid fa-drum" ></i></td>
+                            </tr>
+                        </tbody>
+                        </table>                                              
+                </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Modal for Adding Assignment -->
+
+    <div id="modal-overlay" class="modal-overlay">
+      <div class="modal-content" id="assignment-modal">
+        <h2>Add Assignment</h2>
+        <p id="modal-session-info" style="font-weight: bold; color: #555;"></p>
+        <form id="assignment-form">
+          <label for="assignment-title">Title</label>
+          <input type="text" id="assignment-title" placeholder="Assignment Title" required />
+
+          <label for="assignment-notes">Notes</label>
+          <textarea id="assignment-text" placeholder="Add notes or instructions"></textarea>
+
+          <div class="modal-buttons">
+            <button type="submit" class="btn-save">Save</button>
+            <button type="button" class="btn-cancel" id="cancel-modal" onclick="closeModal()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="script/sidenav.js"></script>
+    <script src="script/profile-dropdown-menu.js"></script>
+    <script src="script/teacher-assignment-list.js"></script>
+
+    <script src="script/student-list-autocomplete.js"></script>
+    <script src="script/session-display.js"></script>
+    <script src="script/popup-assignment.js"></script>
+</body>
+</html>
